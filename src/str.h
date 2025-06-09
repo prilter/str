@@ -5,6 +5,8 @@ extern const size_ DOUBLE_FREE;
 extern const size_ SUCCESS_FREE;
 extern const char *FAIL_ADDING;
 extern const char *FAIL_MAKING; 
+extern const size_ VALUE_WAS_RELEASED;
+extern const size_ SUCCESS_SWAP;
 
 /* FUNCTIONS */
 extern str init_str(size_ sz);
@@ -18,5 +20,5 @@ extern str to_string_ui32(unsigned long int);
 extern str to_string_i64(long long int);
 extern str to_string_ui64(unsigned long long int);
 
-extern void _swap(str *restrict, str *restrict);
+extern size_ _swap(str *, str *);
 #define swap(s1, s2) _swap(&s1, &s2)
