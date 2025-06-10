@@ -38,6 +38,7 @@ typedef struct str {
   char *(*front)         (struct str *restrict);
   int   (*empty)         (struct str *restrict);
   size_ (*size)          (struct str *restrict);
+  size_ (*count_ch)      (struct str *, int);
 
   /* FREE */
   size_  (*free_str)     (struct str *restrict);

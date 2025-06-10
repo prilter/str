@@ -35,6 +35,7 @@ extern STR   ___push_back___(str *self, int);
 extern char *___back___(str *self);
 extern char *___front___(str *restrict);
 extern int   ___empty___(str *restrict);
+extern size_ ___count_ch___(str *, int);
 
 // /* FREE */
 extern size_ ___free_str___(str *restrict self);
@@ -79,6 +80,7 @@ str init_str(size_ sz)
     .front         = ___front___,
     .empty         = ___empty___,
     .size          = ___len___,
+    .count_ch      = ___count_ch___,
 
     /* FREE */
     .free_str = ___free_str___

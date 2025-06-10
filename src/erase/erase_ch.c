@@ -5,7 +5,7 @@
 str
 ___erase_ch___(str *self, int ch, size_ times) 
 {
-  if (self->is_free)
+  if (self->is_free || times == 0)
     return *self;
 
   size_t i;

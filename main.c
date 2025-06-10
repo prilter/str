@@ -11,7 +11,7 @@ int
 main(void)
 {
   str s = get_ascii_uppercase();
-  puts(s.erase_ch(&s, 'A', 2).c_str);
+  puts(s.c_str);
   if (s.free_str(&s))
     puts("Successful free");
   return 0;
