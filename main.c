@@ -12,7 +12,6 @@ int
 main(void)
 {
   str s = get_ascii_uppercase();
-  puts(s.c_str);
   if (s.free_str(&s))
     puts("Successful free");
   return 0;

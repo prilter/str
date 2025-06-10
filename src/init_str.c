@@ -22,7 +22,8 @@ extern STR ___insertn___(str *line, const char *s, size_t x, size_t n);
 extern STR ___insert_char___(str *line, const char ch, size_t x);
 
 /* ERASE */
-extern STR ___erase___(str *line, size_t st, size_t end);
+extern STR ___erase_sub___(str *line, size_t st, size_t end);
+extern STR ___erase_s___(str *line, const char *s);
 
 /* APPEND */
 extern STR   ___append___(str *restrict self, const char *restrict res);
@@ -54,7 +55,7 @@ str init_str(size_ sz)
     /* STRING */
     .emstr         = ___emstr___,
     .newstr        = ___newstr___,
-    .strchs        = ___assign_char___ ,
+    .strchs        = ___assign_char___,
     .newnstr       = ___newnstr___,
 
     /* INSERT */
@@ -63,7 +64,8 @@ str init_str(size_ sz)
     .insert_char   = ___insert_char___,
 
     /* ERASE */
-    .erase         = ___erase___,
+    .erase_sub     = ___erase_sub___,
+    .erase_s       = ___erase_s___,
 
     /* APPEND */
     .append        = ___append___ ,

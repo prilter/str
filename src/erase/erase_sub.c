@@ -3,7 +3,7 @@
 #include "../struct.h"
 
 str
-___erase___(str *self, size_ st, size_ end) 
+___erase_sub___(str *self, size_ st, size_ end) 
 {
   size_t len;
 
