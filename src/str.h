@@ -23,4 +23,5 @@ extern str to_string_ui64(unsigned long long int);
 extern size_ _swap(str *, str *);
 #define swap(s1, s2) (_swap(&s1, &s2))
 
-#define compare(s1, s2) ( s1.len(&s1) - s2.len(&s2) )
+extern size_ strlen(const char *);
+#define compare(s1, s2) ( strlen(s1.c_str) - strlen(s2.c_str) )
