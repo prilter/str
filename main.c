@@ -24,7 +24,7 @@ main(void)
   s1.assign_line(&s1, "Hello");
   s2.assign_line(&s2, "world");
 
-  printf("%zd\n", compare(s1, s2.push_back(&s2, '!')));
+  printf("%d\n", compare(s1, s2.push_back(&s2, '!')));
 }
 
 str 

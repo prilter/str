@@ -76,7 +76,6 @@ string& replace(iterator i1, iterator i2, const char* s, size_t n);
 string& replace(size_t pos, size_t len, size_t n, char c);
 string& replace(iterator i1, iterator i2, size_t n, char c);
 template <class InputIterator> string& replace(iterator i1, iterator i2, InputIterator first, InputIterator last);
-void swap(string& str);
 void pop_back();
 
   STRING OPERATIONS
@@ -107,7 +106,6 @@ size_t find_last_not_of(const char* s, size_t pos = npos) const;
 size_t find_last_not_of(const char* s, size_t pos, size_t n) const;
 size_t find_last_not_of(char c, size_t pos = npos) const noexcept;
 string substr(size_t pos = 0, size_t len = npos) const;
-int compare(const string& str) const noexcept;
 int compare(size_t pos, size_t len, const string& str) const;
 int compare(size_t pos, size_t len, const string& str, size_t subpos, size_t sublen) const;
 int compare(const char* s) const;
