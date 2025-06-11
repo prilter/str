@@ -31,6 +31,9 @@ typedef struct str {
   /* APPEND */
   STR   (*append)        (struct str *restrict, const char *restrict);
 
+  /* REPLACE */
+  STR   (*replace)       (struct str *, size_, size_, const char *);
+
   /* OTHER */
   size_ (*len)           (struct str *restrict);
   STR   (*push_back)     (struct str *, int ch);

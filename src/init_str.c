@@ -29,6 +29,9 @@ extern STR ___erase_ch___(str *line, int ch, size_ times);
 /* APPEND */
 extern STR   ___append___(str *restrict self, const char *restrict res);
 
+/* REPLACE */
+extern STR   ___replace___(str *self, size_ pos, size_ count, const char *add);
+
 /* OTHER */
 extern size_ ___len___(str *restrict);
 extern STR   ___push_back___(str *self, int);
@@ -72,6 +75,9 @@ str init_str(size_ sz)
 
     /* APPEND */
     .append        = ___append___ ,
+
+    /* REPLACE */
+    .replace       = ___replace___,
 
     /* OTHER */
     .len           = ___len___ ,

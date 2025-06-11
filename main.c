@@ -6,7 +6,7 @@
 */
 
 /* GET ENGLISH ALPHABET */
-str get_ascii_uppercase(void);
+//str get_ascii_uppercase(void);
 int 
 main(void)
 {
@@ -16,17 +16,15 @@ main(void)
     puts("Successful free");
   return 0;*/
 
-  str s1, s2;
+  str s = init_str(AUTO_ALLOC);
+  s.assign_line(&s, "Hello world!");
+  s.replace(&s, 6, 5, "C++");
 
-  s1 = init_str(AUTO_ALLOC);
-  s2 = init_str(AUTO_ALLOC);
+  puts(s.c_str);
 
-  s1.assign_line(&s1, "Hello");
-  s2.assign_line(&s2, "world");
-
-  printf("%d\n", compare(s1, s2.push_back(&s2, '!')));
+  return 0;
 }
-
+/*
 str 
 get_ascii_uppercase(void)
 {
@@ -35,4 +33,4 @@ get_ascii_uppercase(void)
     res.push_back(&res,i);
 
   return res;
-}
+}*/

@@ -7,7 +7,7 @@ OBJ_DIR = objects
 BIN_DIR = bin
 
 # Source directories (add new directories here)
-SRC_DIRS = $(SRC_DIR) $(SRC_DIR)/assign $(SRC_DIR)/str $(SRC_DIR)/insert $(SRC_DIR)/erase $(SRC_DIR)/to_string $(SRC_DIR)/append # Add more directories as needed
+SRC_DIRS = $(SRC_DIR) $(SRC_DIR)/assign $(SRC_DIR)/str $(SRC_DIR)/insert $(SRC_DIR)/erase $(SRC_DIR)/to_string $(SRC_DIR)/append $(SRC_DIR)/replace # Add more directories as needed
 
 # Compiler flags by build type
 DEBUG_FLAGS = -Wall -Wextra -Werror -g -DDEBUG -O0
@@ -15,7 +15,7 @@ RELEASE_FLAGS = -O3 -DNDEBUG
 DEFAULT_FLAGS =
 
 # Linker flags
-LDFLAGS = 
+LDFLAGS = -O3
 
 # Find all source files
 SRCS = $(foreach dir,$(SRC_DIRS),$(wildcard $(dir)/*.c))
