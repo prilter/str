@@ -48,8 +48,6 @@ typedef struct str {
 
 /* TODO
   ELEMENT ACCESS
-char& operator[] (size_t pos);
-const char& operator[] (size_t pos) const;
 char& at(size_t pos);
 const char& at(size_t pos) const;
 const char* data() const noexcept;
@@ -116,11 +114,6 @@ int compare(const char* s) const;
 int compare(size_t pos, size_t len, const char* s) const;
 int compare(size_t pos, size_t len, const char* s, size_t n) const;
 
-  NON-MEMBER FUNCTION OVERLOADS
-void swap(string& x, string& y);
-istream& getline(istream& is, string& str, char delim);
-istream& getline(istream& is, string& str);
-  
 NUMERIC CONVERSIONS (C++11 AND LATER)
 int stoi(const string& str, size_t* idx = 0, int base = 10);
 long stol(const string& str, size_t* idx = 0, int base = 10);
