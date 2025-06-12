@@ -44,6 +44,7 @@ typedef struct str {
   size_ (*size)          (struct str *restrict);
   size_ (*count_ch)      (struct str *, int);
   size_ (*count)         (struct str *, const char *);
+  char  (*find_first_of) (struct str *, const char *, size_);
 
   /* FREE */
   size_  (*free_str)     (struct str *restrict);

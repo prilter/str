@@ -41,6 +41,7 @@ extern char *___front___(str *restrict);
 extern int   ___empty___(str *restrict);
 extern size_ ___count_ch___(str *, int);
 extern size_ ___count___(str *, const char *);
+extern char  ___find_first_of___(str *self, const char *list, size_ pos);
 
 // /* FREE */
 extern size_ ___free_str___(str *restrict self);
@@ -91,6 +92,7 @@ str init_str(size_ sz)
     .size          = ___len___,
     .count_ch      = ___count_ch___,
     .count         = ___count___,
+    .find_first_of = ___find_first_of___,
 
     /* FREE */
     .free_str = ___free_str___
