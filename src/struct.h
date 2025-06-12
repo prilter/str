@@ -33,6 +33,7 @@ typedef struct str {
 
   /* REPLACE */
   STR   (*replace)       (struct str *, size_, size_, const char *);
+  STR   (*replace_py)    (struct str *, const char *, const char *, size_);
 
   /* OTHER */
   size_ (*len)           (struct str *restrict);
@@ -42,6 +43,7 @@ typedef struct str {
   int   (*empty)         (struct str *restrict);
   size_ (*size)          (struct str *restrict);
   size_ (*count_ch)      (struct str *, int);
+  size_ (*count)         (struct str *, const char *);
 
   /* FREE */
   size_  (*free_str)     (struct str *restrict);

@@ -31,6 +31,7 @@ extern STR   ___append___(str *restrict self, const char *restrict res);
 
 /* REPLACE */
 extern STR   ___replace___(str *self, size_ pos, size_ count, const char *add);
+extern STR   ___replace_py___(str *self, const char *to_rep, const char *to_get, size_t times);
 
 /* OTHER */
 extern size_ ___len___(str *restrict);
@@ -39,6 +40,7 @@ extern char *___back___(str *self);
 extern char *___front___(str *restrict);
 extern int   ___empty___(str *restrict);
 extern size_ ___count_ch___(str *, int);
+extern size_ ___count___(str *, const char *);
 
 // /* FREE */
 extern size_ ___free_str___(str *restrict self);
@@ -78,6 +80,7 @@ str init_str(size_ sz)
 
     /* REPLACE */
     .replace       = ___replace___,
+    .replace_py    = ___replace_py___,
 
     /* OTHER */
     .len           = ___len___ ,
@@ -87,6 +90,7 @@ str init_str(size_ sz)
     .empty         = ___empty___,
     .size          = ___len___,
     .count_ch      = ___count_ch___,
+    .count         = ___count___,
 
     /* FREE */
     .free_str = ___free_str___

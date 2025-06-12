@@ -2,29 +2,24 @@
 #include "src/str.h"
 
 /*
+ * TODO:
+ * replace_py
  * Add reserve functions
 */
 
 /* GET ENGLISH ALPHABET */
-//str get_ascii_uppercase(void);
+str get_ascii_uppercase(void);
 int 
 main(void)
 {
-/*  str s = get_ascii_uppercase();
+  str s = get_ascii_uppercase();
   puts(s.c_str);
+  printf("\"AB\" in alphabet counted: %zd\n", s.count(&s, "AB"));
   if (s.free_str(&s))
     puts("Successful free");
-  return 0;*/
-
-  str s = init_str(AUTO_ALLOC);
-  s.assign_line(&s, "Hello world!");
-  s.replace(&s, 6, 5, "C++");
-
-  puts(s.c_str);
-
   return 0;
 }
-/*
+
 str 
 get_ascii_uppercase(void)
 {
@@ -33,4 +28,4 @@ get_ascii_uppercase(void)
     res.push_back(&res,i);
 
   return res;
-}*/
+}
