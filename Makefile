@@ -65,8 +65,8 @@ clean:
 run: debug
 	./$(TARGET)
 
-git: run
-	rm -r $(BIN_DIR) $(OBJ_DIR)
+git: 
+	rm -rf $(BIN_DIR) $(OBJ_DIR)
 	git add .
-	read -p "Enter commit name: " msg && git commit -m "$msg"
+	git commit -F -
 	git push
