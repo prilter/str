@@ -6,7 +6,7 @@
 
 extern str init_str(size_);
 
-int
+static int
 ___pow10___(size_ deg)
 {
   int res;

@@ -6,7 +6,14 @@
 
 extern str init_str(size_);
 
-extern int ___pow10___(size_ deg);
+static int
+___pow10___(size_ deg)
+{
+  int res;
+  for (res = 1; deg--;)
+    res *= 10;
+  return res;
+}
 
 str
 to_string_ui16(unsigned int n)

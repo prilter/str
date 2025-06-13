@@ -27,3 +27,5 @@ extern size_ _swap(str *, str *);
 
 extern int _compare(char *, char *);
 #define compare(s1, s2) ( _compare(s1.c_str, s2.c_str) )
+
+extern long int stoi(const char *, size_ *pos, int num);

@@ -66,9 +66,6 @@ size_t capacity() const noexcept;
 void shrink_to_fit();
 
   MODIFIERS
-string& assign(const string& str);
-string& assign(const char* s, size_t n);
-template <class InputIterator> string& assign(InputIterator first, InputIterator last);
 string& append(const string& str, size_t subpos, size_t sublen);
 string& append(const char* s, size_t n);
 string& append(size_t n, char c);
