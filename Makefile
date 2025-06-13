@@ -26,7 +26,7 @@ OBJS = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS)) $(OBJ_DIR)/main.o #f
 # Target executable
 TARGET = $(BIN_DIR)/program
 
-.PHONY: all clean debug release run
+.PHONY: all clean debug release run git
 
 # Default build (optimized)
 all: CFLAGS = $(DEFAULT_FLAGS)
@@ -64,3 +64,9 @@ clean:
 # Run the debug version
 run: debug
 	./$(TARGET)
+
+git: run
+	rm -r $(BIN_DIR) $(OBJ_DIR)
+	git add .
+	read -p "Enter commit name: " msg && git commit -m "$msg"
+	git push
