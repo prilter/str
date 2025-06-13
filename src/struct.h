@@ -27,6 +27,7 @@ typedef struct str {
   STR   (*erase_sub)     (struct str *, size_ st, size_ end);
   STR   (*erase_s)       (struct str *, const char *);
   STR   (*erase_ch)      (struct str *, int, size_);
+  STR   (*pop_back)      (struct str *restrict);
 
   /* APPEND */
   STR   (*append)        (struct str *restrict, const char *restrict);

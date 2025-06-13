@@ -14,10 +14,9 @@ main(void)
 {
   str s = get_ascii_uppercase();
   puts(s.c_str);
-  printf("\"AB\" in alphabet counted: %zd\n", s.count(&s, "AB"));
-  putc(s.find_last_of(&s, "STR", 0), stdout);
+  puts(s.pop_back(&s).c_str);
   if (s.free_str(&s))
-    puts("\nSuccessful free");
+    puts("Successful free");
   return 0;
 }
 
