@@ -45,6 +45,7 @@ typedef struct str {
   size_ (*count_ch)      (struct str *, int);
   size_ (*count)         (struct str *, const char *);
   char  (*find_first_of) (struct str *, const char *, size_);
+  char  (*find_last_of)  (struct str *, const char *, size_);
 
   /* FREE */
   size_  (*free_str)     (struct str *restrict);
@@ -95,9 +96,6 @@ size_t rfind(const string& str, size_t pos = npos) const noexcept;
 size_t rfind(const char* s, size_t pos = npos) const;
 size_t rfind(const char* s, size_t pos, size_t n) const;
 size_t rfind(char c, size_t pos = npos) const noexcept;
-size_t find_first_of(const string& str, size_t pos = 0) const noexcept;
-size_t find_first_of(const char* s, size_t pos = 0) const;
-size_t find_first_of(const char* s, size_t pos, size_t n) const;
 size_t find_first_of(char c, size_t pos = 0) const noexcept;
 size_t find_last_of(const string& str, size_t pos = npos) const noexcept;
 size_t find_last_of(const char* s, size_t pos = npos) const;

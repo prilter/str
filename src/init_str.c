@@ -42,8 +42,9 @@ extern int   ___empty___(str *restrict);
 extern size_ ___count_ch___(str *, int);
 extern size_ ___count___(str *, const char *);
 extern char  ___find_first_of___(str *self, const char *list, size_ pos);
+extern char  ___find_last_of___(str *self, const char *list, size_ pos);
 
-// /* FREE */
+/* FREE */
 extern size_ ___free_str___(str *restrict self);
 
 /* FUNCTION */
@@ -93,6 +94,7 @@ str init_str(size_ sz)
     .count_ch      = ___count_ch___,
     .count         = ___count___,
     .find_first_of = ___find_first_of___,
+    .find_last_of  = ___find_last_of___,
 
     /* FREE */
     .free_str = ___free_str___
