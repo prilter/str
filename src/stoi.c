@@ -31,3 +31,4 @@ stoi(const char *num, size_t* pos, int base)
 
   return res;
 }
+

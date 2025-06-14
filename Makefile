@@ -21,10 +21,10 @@ LDFLAGS = -O3
 SRCS = $(foreach dir,$(SRC_DIRS),$(wildcard $(dir)/*.c))
 
 # Generate object files (preserving directory structure)
-OBJS = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS)) $(OBJ_DIR)/main.o #f
+OBJS = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS)) $(OBJ_DIR)/example.o #f
 
 # Target executable
-TARGET = $(BIN_DIR)/program
+TARGET = $(BIN_DIR)/example
 
 .PHONY: all clean debug release run git
 
@@ -49,8 +49,8 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
 	@mkdir -p $(@D)
 	$(COMPILER) $(CFLAGS) -c $< -o $@
 
-# Special rule for main.c
-$(OBJ_DIR)/main.o: main.c | $(OBJ_DIR)
+# Special rule for example.c
+$(OBJ_DIR)/example.o: example.c | $(OBJ_DIR)
 	$(COMPILER) $(CFLAGS) -c $< -o $@
 
 # Create base directories if they don't exist

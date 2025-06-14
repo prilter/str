@@ -8,7 +8,7 @@ extern const str  *FAILED_LESS_MEMORY;
 extern const char *FAIL_ADDING;
 extern const char *FAIL_MAKING; 
 extern const size_ VALUE_WAS_RELEASED;
-extern const size_ SUCCESS;
+extern const str  *FAIL_MAPPING;
 
 /* FUNCTIONS */
 extern str init_str(size_ sz);
