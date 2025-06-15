@@ -50,7 +50,8 @@ typedef struct str {
   size_ (*count)         (struct str *, const char *);
   char  (*find_first_of) (struct str *, const char *, size_);
   char  (*find_last_of)  (struct str *, const char *, size_);
-  STR   (*substr)        (struct str *, size_, size_);
+  STR   (*substr)        (struct str *restrict, size_, size_);
+  STR   (*find)          (struct str *, const char *, size_, size_);
 
   /* FREE */
   size_  (*free_str)     (struct str *restrict);
@@ -110,7 +111,6 @@ size_t find_last_not_of(const string& str, size_t pos = npos) const noexcept;
 size_t find_last_not_of(const char* s, size_t pos = npos) const;
 size_t find_last_not_of(const char* s, size_t pos, size_t n) const;
 size_t find_last_not_of(char c, size_t pos = npos) const noexcept;
-string substr(size_t pos = 0, size_t len = npos) const;
 int compare(size_t pos, size_t len, const string& str) const;
 int compare(size_t pos, size_t len, const string& str, size_t subpos, size_t sublen) const;
 int compare(const char* s) const;

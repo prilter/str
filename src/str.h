@@ -1,3 +1,10 @@
+
+/*
+ * TODO:
+ * replace_py
+ * Add reserve functions
+*/
+
 #include "struct.h"
 
 /* RETURNS */

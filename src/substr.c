@@ -10,7 +10,7 @@ const str *FAIL_MAPPING = NULL;
  * BECAUSE GCC CANNOT COMPILE WITHOUT ALLOCATIONS ERROR. 
  * FOR NOW SUBSTR WORKS WITHOUT BUGS WORKS FINE */
 str
-___substr___(str *s, size_t pos, size_t len)
+___substr___(str *restrict s, size_t pos, size_t len)
 {
   assert(pos <= strlen(s->c_str));
 

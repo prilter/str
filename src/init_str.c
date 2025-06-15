@@ -44,7 +44,8 @@ extern size_ ___count_ch___(str *, int);
 extern size_ ___count___(str *, const char *);
 extern char  ___find_first_of___(str *self, const char *list, size_ pos);
 extern char  ___find_last_of___(str *self, const char *list, size_ pos);
-extern str   ___substr___(str *self, size_, size_);
+extern str   ___substr___(str *restrict self, size_, size_);
+extern str   ___find___(str *, const char *, size_, size_);
 
 /* FREE */
 extern size_ ___free_str___(str *restrict self);
@@ -99,6 +100,7 @@ str init_str(size_ sz)
     .find_first_of = ___find_first_of___,
     .find_last_of  = ___find_last_of___,
     .substr        = ___substr___,
+    .find          = ___find___,
 
     /* FREE */
     .free_str = ___free_str___

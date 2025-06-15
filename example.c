@@ -1,11 +1,5 @@
 #include <stdio.h>
 #include "src/str.h"
-extern str ___substr___(str *s, size_, size_);
-/*
- * TODO:
- * replace_py
- * Add reserve functions
-*/
 
 /* GET ENGLISH ALPHABET */
 str get_ascii_uppercase(void);
@@ -13,8 +7,7 @@ int
 main(void)
 {
   str s = get_ascii_uppercase();
-  puts(s.data);
-  puts(s.substr(&s, 13, 3).c_str);
+  puts(s.find(&s, "DEF", 1, 2).c_str);
   if (s.free_str(&s))
     puts("Successful free");
   return 0;
