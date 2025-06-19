@@ -6,16 +6,15 @@ str get_ascii_uppercase(void);
 int 
 main(void)
 {
-  str s = get_ascii_uppercase();
-  size_t val;
+  str s1 = get_ascii_uppercase();
+  str s2 = s1.copy(&s1, s1.len(&s1));
 
-  if ((val = s.rfind_ch(&s, '0') == NPOS))
-    puts("Not found");
-  else
-    printf("%zd\n", val);
+  printf("Not copied alphabet:\t%s\nCopied alphabet:\t%s\n", s1.c_str, s2.c_str);
 
-  if (s.free_str(&s))
-    puts("Successful free");
+  if (s1.free_str(&s1))
+    puts("Successful free(s1)");
+  if (s2.free_str(&s2))
+    puts("Successful free(s2)");
 
   return 0;
 }

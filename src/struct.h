@@ -55,6 +55,7 @@ typedef struct str {
   char  (*find_last_of)   (struct str *, const char *, size_t);
   STR   (*substr)         (struct str *restrict, size_t, size_t);
   STR   (*find)           (struct str *, const char *, size_t, size_t);
+  STR   (*copy)           (struct str *restrict, size_t);
 
   /* FREE */
   size_t  (*free_str)     (struct str *restrict);
@@ -92,7 +93,6 @@ template <class InputIterator> string& replace(iterator i1, iterator i2, InputIt
 void pop_back();
 
   STRING OPERATIONS
-const char* data() const noexcept;
 size_t copy(char* s, size_t len, size_t pos = 0) const;
 size_t find(const string& str, size_t pos = 0) const noexcept;
 size_t find(const char* s, size_t pos = 0) const;
@@ -101,7 +101,6 @@ size_t find(char c, size_t pos = 0) const noexcept;
 size_t rfind(const string& str, size_t pos = npos) const noexcept;
 size_t rfind(const char* s, size_t pos = npos) const;
 size_t rfind(const char* s, size_t pos, size_t n) const;
-size_t rfind(char c, size_t pos = npos) const noexcept;
 size_t find_first_of(char c, size_t pos = 0) const noexcept;
 size_t find_last_of(const string& str, size_t pos = npos) const noexcept;
 size_t find_last_of(const char* s, size_t pos, size_t n) const;
