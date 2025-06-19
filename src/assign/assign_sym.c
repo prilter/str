@@ -5,7 +5,7 @@
 extern str *FAIL_ADDING;
 
 str
-___assign_char___(str *self, size_ len, int sym) 
+___assign_char___(str *self, size_t len, int sym) 
 {
   if (!len)
     return *self;

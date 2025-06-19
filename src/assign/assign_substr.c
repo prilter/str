@@ -5,9 +5,9 @@
 extern str *FAIL_ADDING;
 
 str
-___assign_substr___(str *self, const char *s, size_ st, size_ end)
+___assign_substr___(str *self, const char *s, size_t st, size_t end)
 {
-  size_ buf;
+  size_t buf;
 
   /* WRONG ARGUMENTS */
   if (!s)

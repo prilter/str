@@ -8,13 +8,13 @@
 /* ASSIGN */
 extern STR   ___assign___(str *self, ...);
 extern STR   ___assign_line___(str *self, const char *s);
-extern STR   ___assign_char___(str *self, size_, int);
-extern STR   ___assign_substr___(str *self, const char *, size_, size_);
+extern STR   ___assign_char___(str *self, size_t, int);
+extern STR   ___assign_substr___(str *self, const char *, size_t, size_t);
 
 /* STRING */
 extern STR   ___emstr___(str *restrict self);
 extern STR   ___newstr___(str *restrict self, const char *restrict s);
-extern STR   ___newnstr___(str *self, const char *s, size_ n);
+extern STR   ___newnstr___(str *self, const char *s, size_t n);
 
 /* INSERT */
 extern STR ___insert___(str *line, const char *s, size_t x);
@@ -24,38 +24,38 @@ extern STR ___insert_char___(str *line, const char ch, size_t x);
 /* ERASE */
 extern STR ___erase_sub___(str *line, size_t st, size_t end);
 extern STR ___erase_s___(str *line, const char *s);
-extern STR ___erase_ch___(str *line, int ch, size_ times);
+extern STR ___erase_ch___(str *line, int ch, size_t times);
 extern STR ___pop_back___(str *restrict line);
 
 /* APPEND */
-extern STR   ___append___(str *restrict self, const char *restrict res);
+extern STR    ___append___(str *restrict self, const char *restrict res);
 
 /* REPLACE */
-extern STR   ___replace___(str *self, size_ pos, size_ count, const char *add);
-extern STR   ___replace_py___(str *self, const char *to_rep, const char *to_get, size_t times);
+extern STR    ___replace___(str *self, size_t pos, size_t count, const char *add);
+extern STR    ___replace_py___(str *self, const char *to_rep, const char *to_get, size_t times);
 
 /* RFIND */
-extern size_ ___rfind_ch___(str *s, int ch);
+extern size_t ___rfind_ch___(str *s, int ch);
 
 /* OTHER */
-extern size_ ___len___(str *restrict);
-extern STR   ___push_back___(str *self, int);
-extern char *___back___(str *self);
-extern char *___front___(str *restrict);
-extern int   ___empty___(str *restrict);
-extern size_ ___count_ch___(str *, int);
-extern size_ ___count___(str *, const char *);
-extern char  ___find_first_of___(str *self, const char *list, size_ pos);
-extern char  ___find_last_of___(str *self, const char *list, size_ pos);
-extern str   ___substr___(str *restrict self, size_, size_);
-extern str   ___find___(str *, const char *, size_, size_);
+extern size_t ___len___(str *restrict);
+extern STR    ___push_back___(str *self, int);
+extern char * ___back___(str *self);
+extern char * ___front___(str *restrict);
+extern int    ___empty___(str *restrict);
+extern size_t ___count_ch___(str *, int);
+extern size_t ___count___(str *, const char *);
+extern char   ___find_first_of___(str *self, const char *list, size_t pos);
+extern char   ___find_last_of___(str *self, const char *list, size_t pos);
+extern str    ___substr___(str *restrict self, size_t, size_t);
+extern str    ___find___(str *, const char *, size_t, size_t);
 
 /* FREE */
-extern size_ ___free_str___(str *restrict self);
+extern size_t ___free_str___(str *restrict self);
 
 /* FUNCTION */
-size_ AUTO_ALLOC = 0;
-str init_str(size_ sz)
+size_t AUTO_ALLOC = 0;
+str init_str(size_t sz)
 {
   return (str) { 
     .c_str = (char *)malloc(sz), 

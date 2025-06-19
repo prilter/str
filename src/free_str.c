@@ -1,10 +1,10 @@
 #include <malloc.h>
 #include "struct.h"
 
-const size_ DOUBLE_FREE  = 0;
-const size_ SUCCESS_FREE = 1;
+const size_t DOUBLE_FREE  = 0;
+const size_t SUCCESS_FREE = 1;
 
-size_
+size_t
 ___free_str___(str *restrict self)
 {
   if (self->is_free)

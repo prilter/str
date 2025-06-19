@@ -3,7 +3,7 @@
 #include "../struct.h"
 
 str
-___erase_ch___(str *self, int ch, size_ times) 
+___erase_ch___(str *self, int ch, size_t times) 
 {
   if (self->is_free || times == 0)
     return *self;

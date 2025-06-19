@@ -2,12 +2,12 @@
 #include "struct.h"
 
 char
-___find_first_of___(str *self, const char *list, size_ pos)
+___find_first_of___(str *self, const char *list, size_t pos)
 {
   /* INIT */
-  char *s;
-  size_ min, c;
-  char res;
+  char  *s;
+  size_t min, c;
+  char   res;
 
   /* CHECK ARGUMENTS */
   if (!self->c_str || self->is_free || !list || pos > strlen(self->c_str))

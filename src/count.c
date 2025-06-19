@@ -1,12 +1,14 @@
 #include <string.h>
 #include "struct.h"
 
-size_ 
+size_t
 ___count___(str *self, const char *sub)
 {
-  char *s = self->c_str;
-  size_ res;
-  size_ sublen;
+  char  *s;
+  size_t res;
+  size_t sublen;
+
+  s = self->c_str;
 
   if (!s || !sub) 
     return 0;

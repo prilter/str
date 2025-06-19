@@ -2,7 +2,7 @@
 #include <malloc.h>
 #include "../struct.h"
 
-extern str ___erase_sub___(str *self, size_, size_);
+extern str ___erase_sub___(str *self, size_t, size_t);
 
 str
 ___erase_s___(str *self, const char *s) 

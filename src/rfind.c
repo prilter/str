@@ -1,14 +1,14 @@
 #include <string.h>
 #include "struct.h"
 
-extern const size_ VALUE_WAS_RELEASED;
-const size_ NPOS = -1;
+extern const size_t VALUE_WAS_RELEASED;
+const size_t NPOS = -1;
 
-size_
+size_t
 ___rfind_ch___(str *s, int ch)
 {
   char *ln;
-  size_ len;
+  size_t len;
 
   if (!s->data || s->is_free)
     return VALUE_WAS_RELEASED;

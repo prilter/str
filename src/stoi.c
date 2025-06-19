@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 long int
-stoi(const char *num, size_t* pos, int base) 
+stoi(const char *num, size_t *pos, int base) 
 {
   char* endptr;
   long int res;

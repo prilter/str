@@ -1,4 +1,4 @@
-typedef unsigned long int size_;
+#include <stddef.h>
 
 #define STR struct str
 
@@ -7,57 +7,57 @@ typedef struct str {
     char *c_str;
     char *data;
   };
-  size_ alloced;
-  size_ is_free;
+  size_t alloced;
+  size_t is_free;
   
   /* ASSIGN */
-  STR   (*assign_line)   (struct str *, const char *);
-  STR   (*assign_char)   (struct str *, size_, int);
-  STR   (*assign_substr) (struct str *, const char *, size_, size_);
+  STR   (*assign_line)    (struct str *, const char *);
+  STR   (*assign_char)    (struct str *, size_t, int);
+  STR   (*assign_substr)  (struct str *, const char *, size_t, size_t);
 
   /* STRING */
-  STR   (*emstr)         (struct str *restrict);
-  STR   (*newstr)        (struct str *restrict, const char *restrict);
-  STR   (*strchs)        (struct str *self, size_, int); /* LIKE string(size_t, char) FROM C++ */
-  STR   (*newnstr)       (struct str *, const char *, size_);
+  STR   (*emstr)          (struct str *restrict);
+  STR   (*newstr)         (struct str *restrict, const char *restrict);
+  STR   (*strchs)         (struct str *self, size_t, int); /* LIKE string(size_t, char) FROM C++ */
+  STR   (*newnstr)        (struct str *, const char *, size_t);
 
   /* INSERT */
-  STR   (*insert)        (struct str *, const char *, size_);
-  STR   (*insertn)       (struct str *, const char *, size_, size_);
-  STR   (*insert_char)   (struct str *, const char, size_);
+  STR   (*insert)         (struct str *, const char *, size_t);
+  STR   (*insertn)        (struct str *, const char *, size_t, size_t);
+  STR   (*insert_char)    (struct str *, const char, size_t);
 
   /* ERASE */
-  STR   (*erase_sub)     (struct str *, size_ st, size_ end);
-  STR   (*erase_s)       (struct str *, const char *);
-  STR   (*erase_ch)      (struct str *, int, size_);
-  STR   (*pop_back)      (struct str *restrict);
+  STR   (*erase_sub)      (struct str *, size_t st, size_t end);
+  STR   (*erase_s)        (struct str *, const char *);
+  STR   (*erase_ch)       (struct str *, int, size_t);
+  STR   (*pop_back)       (struct str *restrict);
 
   /* APPEND */
-  STR   (*append)        (struct str *restrict, const char *restrict);
+  STR   (*append)         (struct str *restrict, const char *restrict);
 
   /* REPLACE */
-  STR   (*replace)       (struct str *, size_, size_, const char *);
-  STR   (*replace_py)    (struct str *, const char *, const char *, size_);
+  STR   (*replace)        (struct str *, size_t, size_t, const char *);
+  STR   (*replace_py)     (struct str *, const char *, const char *, size_t);
 
   /* RFIND */
-  size_ (*rfind_ch)      (struct str *, int);
+  size_t (*rfind_ch)       (struct str *, int);
 
   /* OTHER */
-  size_ (*len)           (struct str *restrict);
-  STR   (*push_back)     (struct str *, int ch);
-  char *(*back)          (struct str *restrict);
-  char *(*front)         (struct str *restrict);
-  int   (*empty)         (struct str *restrict);
-  size_ (*size)          (struct str *restrict);
-  size_ (*count_ch)      (struct str *, int);
-  size_ (*count)         (struct str *, const char *);
-  char  (*find_first_of) (struct str *, const char *, size_);
-  char  (*find_last_of)  (struct str *, const char *, size_);
-  STR   (*substr)        (struct str *restrict, size_, size_);
-  STR   (*find)          (struct str *, const char *, size_, size_);
+  size_t (*len)           (struct str *restrict);
+  STR   (*push_back)      (struct str *, int ch);
+  char *(*back)           (struct str *restrict);
+  char *(*front)          (struct str *restrict);
+  int   (*empty)          (struct str *restrict);
+  size_t (*size)          (struct str *restrict);
+  size_t (*count_ch)      (struct str *, int);
+  size_t (*count)         (struct str *, const char *);
+  char  (*find_first_of)  (struct str *, const char *, size_t);
+  char  (*find_last_of)   (struct str *, const char *, size_t);
+  STR   (*substr)         (struct str *restrict, size_t, size_t);
+  STR   (*find)           (struct str *, const char *, size_t, size_t);
 
   /* FREE */
-  size_  (*free_str)     (struct str *restrict);
+  size_t  (*free_str)     (struct str *restrict);
 } str;
 
 

@@ -7,7 +7,7 @@ int
 main(void)
 {
   str s = get_ascii_uppercase();
-  size_ val;
+  size_t val;
 
   if ((val = s.rfind_ch(&s, '0') == NPOS))
     puts("Not found");

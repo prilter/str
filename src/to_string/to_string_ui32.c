@@ -4,10 +4,10 @@
 
 #include "../struct.h"
 
-extern str init_str(size_);
+extern str init_str(size_t);
 
 static int
-___pow10___(size_ deg)
+___pow10___(size_t deg)
 {
   int res;
   for (res = 1; deg--;)
@@ -19,9 +19,9 @@ str
 to_string_ui32(unsigned long int n)
 {
   /* INIT */
-  str res;
-  size_ len, i;
-  char digs[11] = "0123456789";
+  str    res;
+  size_t len, i;
+  char   digs[11] = "0123456789";
 
   /* IF 0 */
   if (n == 0) {
