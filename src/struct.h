@@ -39,6 +39,9 @@ typedef struct str {
   STR   (*replace)       (struct str *, size_, size_, const char *);
   STR   (*replace_py)    (struct str *, const char *, const char *, size_);
 
+  /* RFIND */
+  size_ (*rfind_ch)      (struct str *, int);
+
   /* OTHER */
   size_ (*len)           (struct str *restrict);
   STR   (*push_back)     (struct str *, int ch);
@@ -118,9 +121,6 @@ int compare(size_t pos, size_t len, const char* s) const;
 int compare(size_t pos, size_t len, const char* s, size_t n) const;
 
 NUMERIC CONVERSIONS (C++11 AND LATER)
-int stoi(const string& str, size_t* idx = 0, int base = 10);
-long stol(const string& str, size_t* idx = 0, int base = 10);
-unsigned long stoul(const string& str, size_t* idx = 0, int base = 10);
 long long stoll(const string& str, size_t* idx = 0, int base = 10);
 unsigned long long stoull(const string& str, size_t* idx = 0, int base = 10);
 float stof(const string& str, size_t* idx = 0);

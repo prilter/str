@@ -16,6 +16,7 @@ extern const char *FAIL_ADDING;
 extern const char *FAIL_MAKING; 
 extern const size_ VALUE_WAS_RELEASED;
 extern const str  *FAIL_MAPPING;
+extern const size_ NPOS;
 
 /* FUNCTIONS */
 extern str init_str(size_ sz);

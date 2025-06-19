@@ -7,9 +7,16 @@ int
 main(void)
 {
   str s = get_ascii_uppercase();
-  puts(s.find(&s, "DEF", 1, 2).c_str);
+  size_ val;
+
+  if ((val = s.rfind_ch(&s, '0') == NPOS))
+    puts("Not found");
+  else
+    printf("%zd\n", val);
+
   if (s.free_str(&s))
     puts("Successful free");
+
   return 0;
 }
 

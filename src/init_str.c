@@ -34,6 +34,9 @@ extern STR   ___append___(str *restrict self, const char *restrict res);
 extern STR   ___replace___(str *self, size_ pos, size_ count, const char *add);
 extern STR   ___replace_py___(str *self, const char *to_rep, const char *to_get, size_t times);
 
+/* RFIND */
+extern size_ ___rfind_ch___(str *s, int ch);
+
 /* OTHER */
 extern size_ ___len___(str *restrict);
 extern STR   ___push_back___(str *self, int);
@@ -87,6 +90,9 @@ str init_str(size_ sz)
     /* REPLACE */
     .replace       = ___replace___,
     .replace_py    = ___replace_py___,
+
+    /* RFIND */
+    .rfind_ch      = ___rfind_ch___,
 
     /* OTHER */
     .len           = ___len___ ,
