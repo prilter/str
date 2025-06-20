@@ -93,7 +93,6 @@ template <class InputIterator> string& replace(iterator i1, iterator i2, InputIt
 void pop_back();
 
   STRING OPERATIONS
-size_t copy(char* s, size_t len, size_t pos = 0) const;
 size_t find(const string& str, size_t pos = 0) const noexcept;
 size_t find(const char* s, size_t pos = 0) const;
 size_t find(const char* s, size_t pos, size_t n) const;

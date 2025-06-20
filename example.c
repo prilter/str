@@ -6,15 +6,13 @@ str get_ascii_uppercase(void);
 int 
 main(void)
 {
-  str s1 = get_ascii_uppercase();
-  str s2 = s1.copy(&s1, s1.len(&s1));
+  str s = get_ascii_uppercase();
 
-  printf("Not copied alphabet:\t%s\nCopied alphabet:\t%s\n", s1.c_str, s2.c_str);
+  putc(at(&s, 3), stdout);
+  putchar('\n');
 
-  if (s1.free_str(&s1))
-    puts("Successful free(s1)");
-  if (s2.free_str(&s2))
-    puts("Successful free(s2)");
+  if (s.free_str(&s))
+    puts("Successful free");
 
   return 0;
 }
