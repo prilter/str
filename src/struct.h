@@ -56,7 +56,8 @@ typedef struct str {
   char   (*find_first_of) (struct str *, const char *, size_t);
   char   (*find_last_of)  (struct str *, const char *, size_t);
   STR    (*substr)        (struct str *restrict, size_t, size_t);
-  STR    (*find)          (struct str *, const char *, size_t, size_t);
+  size_t (*find_n)        (struct str *, const char *, size_t, size_t);
+  size_t (*find)          (struct str *, const char *, size_t);
   STR    (*copy)          (struct str *restrict, size_t);
 
   /* FREE */

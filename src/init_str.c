@@ -49,7 +49,8 @@ extern size_t ___count___(str *, const char *);
 extern char   ___find_first_of___(str *self, const char *list, size_t pos);
 extern char   ___find_last_of___(str *self, const char *list, size_t pos);
 extern str    ___substr___(str *restrict self, size_t, size_t);
-extern str    ___find___(str *, const char *, size_t, size_t);
+extern size_t ___find_n___(str *, const char *, size_t, size_t);
+extern size_t ___find___(str *, const char *, size_t);
 extern str    ___copy___(str *restrict, size_t);
 
 /* FREE */
@@ -110,6 +111,7 @@ str init_str(size_t sz)
     .find_first_of = ___find_first_of___,
     .find_last_of  = ___find_last_of___,
     .substr        = ___substr___,
+    .find_n        = ___find_n___,
     .find          = ___find___,
     .copy          = ___copy___,
 

@@ -1,37 +1,42 @@
-#include <assert.h>
-#include <malloc.h>
 #include <string.h>
 #include "struct.h"
 
-str
-___find___(str *ln, const char *s, size_t pos, size_t count)
+/* FIND */
+extern const size_t NPOS;
+size_t
+___find___(str *ln, const char *s, size_t pos)
+{
+  size_t res;
+
+  if (!ln->data || !s)
+    return NPOS;
+
+  res = strstr(ln->c_str + pos, s) - ln->c_str;
+  if (res < 0 || res > strlen(ln->c_str))
+    return NPOS;
+  return res;
+}
+
+
+/* FIND_N */
+extern void free(void *);
+size_t
+___find_n___(str *ln, const char *s, size_t pos, size_t count)
 {
   /* INIT */
-  char *needle, *res;
+  char *needle;
+  size_t res;
 
   /* CHECK ARGUMENTS */
-  if (!ln->data || !count || !s) {
-    *ln->c_str = '\0';
-    return *ln;
-  }
+  if (!ln->data || !count || !s)
+    return NPOS;
 
-  /* GET NEEDLE */
-  needle = malloc(count * sizeof(char) + 4);
-  strncpy(needle, s, count);
-
-  /* GET RESULT LINE */
-  res = strstr(ln->c_str + pos, needle);
+  /* GET RESULT */
+  needle = strndup(s, count);
+  res = strstr(ln->c_str + pos, needle) - ln->c_str;
   free(needle);
-  assert(res); 
 
-  /* GET ALLOCED VALUE + MAKE A CEIL OF MEMORY FOR RESULT */
-  res = strdup(res);
-  ln->alloced = sizeof(char) * strlen(res) + 4;
-
-  /* GET STRING VALUE */
-  free(ln->data);
-  ln->c_str = res;
-
-  /* END */
-  return *ln;
+  if (res < 0 || res > strlen(ln->c_str))
+    return NPOS;
+  return res;
 }

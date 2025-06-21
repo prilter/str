@@ -7,19 +7,9 @@ int
 main(void)
 {
   str s = init_str(AUTO_ALLOC);
+  s.assign_ln(&s, "A friend in need is a friend indeed.");
 
-  s.assign_ln(&s, "Hello world!");
-  puts(s.c_str);
-
-  s.emstr(&s);
-
-  s.assign_ch(&s, '!', 3);
-  puts(s.c_str);
-
-  s.emstr(&s);
-
-  s.assign_sub(&s, "Hello world!", 6, 11);
-  puts(s.c_str);
+  printf("%zd %zd\n", s.find_n(&s, "is", 0, 1), s.find(&s, "is", 0)); 
 
   if (s.free_str(&s))
     puts("Successful free");
