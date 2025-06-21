@@ -6,7 +6,6 @@
 
 /* REAL FUNCTIONS */
 /* ASSIGN */
-extern STR   ___assign___(str *self, ...);
 extern STR   ___assign_line___(str *self, const char *s);
 extern STR   ___assign_char___(str *self, size_t, int);
 extern STR   ___assign_substr___(str *self, const char *, size_t, size_t);

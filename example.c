@@ -8,7 +8,7 @@ main(void)
 {
   str s = get_ascii_uppercase();
 
-  putc(at(&s, 3), stdout);
+  putc(at(&s, -7), stdout);
   putchar('\n');
 
   if (s.free_str(&s))

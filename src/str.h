@@ -38,4 +38,9 @@ extern int _compare(char *, char *);
 
 extern long int stoi(const char *, size_t *pos, int num);
 
-#define at(s, idx) (*((s)->c_str + idx))
+static inline char at(str *s, int idx) {
+  int sign = (idx >= 0) ? 1:-1;
+  if (sign*idx > s->len(s)) 
+    idx = (sign) * (s->len(s) - (sign == 1));
+  return *(s->c_str + (sign == -1) * s->len(s) + idx);
+}
