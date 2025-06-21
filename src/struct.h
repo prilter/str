@@ -33,7 +33,8 @@ typedef struct str {
   STR   (*pop_back)       (struct str *restrict);
 
   /* APPEND */
-  STR   (*append)         (struct str *restrict, const char *restrict);
+  STR   (*append)         (struct str *, const char *);
+  STR   (*append_n)       (struct str *, const char *, size_t);
 
   /* REPLACE */
   STR   (*replace)        (struct str *, size_t, size_t, const char *);
@@ -89,8 +90,6 @@ string& replace(size_t pos, size_t len, const char* s, size_t n);
 string& replace(iterator i1, iterator i2, const char* s, size_t n);
 string& replace(size_t pos, size_t len, size_t n, char c);
 string& replace(iterator i1, iterator i2, size_t n, char c);
-template <class InputIterator> string& replace(iterator i1, iterator i2, InputIterator first, InputIterator last);
-void pop_back();
 
   STRING OPERATIONS
 size_t find(const string& str, size_t pos = 0) const noexcept;
@@ -121,7 +120,6 @@ int compare(size_t pos, size_t len, const char* s, size_t n) const;
 NUMERIC CONVERSIONS (C++11 AND LATER)
 long long stoll(const string& str, size_t* idx = 0, int base = 10);
 unsigned long long stoull(const string& str, size_t* idx = 0, int base = 10);
-float stof(const string& str, size_t* idx = 0);
 double stod(const string& str, size_t* idx = 0);
 long double stold(const string& str, size_t* idx = 0);
 
