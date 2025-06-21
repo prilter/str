@@ -39,10 +39,11 @@ extern int _compare(char *, char *);
 extern long int stoi(const char *, size_t *pos, int num);
 extern float    stof(const char *, size_t *pos);
 
-static inline char at(str *restrict s, int idx) {
+#define at(s, idx) (*at_ln(s, idx))
+static inline const char *at_ln(str *restrict s, int idx) {
   extern size_t strlen(const char *restrict);
   int sign = (idx >= 0) ? 1:-1;
   if (sign*idx > (int)strlen(s->data)) 
     idx = (sign) * (strlen(s->data) - (sign == 1));
-  return *(s->c_str + (sign == -1) * s->len(s) + idx);
+  return (s->c_str + (sign == -1) * s->len(s) + idx);
 }

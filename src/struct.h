@@ -67,7 +67,6 @@ typedef struct str {
 
 /* TODO
   ELEMENT ACCESS
-const char& at(size_t pos) const;
 const char* data() const noexcept;
 
   CAPACITY
