@@ -20,13 +20,19 @@ LDFLAGS = -O3
 # Find all source files
 SRCS = $(foreach dir,$(SRC_DIRS),$(wildcard $(dir)/*.c))
 
+# Exclude example.c for library build
+LIB_SRCS = $(filter-out example.c, $(SRCS))
+
 # Generate object files (preserving directory structure)
-OBJS = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS)) $(OBJ_DIR)/example.o #f
+OBJS = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS)) $(OBJ_DIR)/example.o
+
+# Object files for library (excluding example.o)
+LIB_OBJS = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(LIB_SRCS))
 
 # Target executable
 TARGET = $(BIN_DIR)/example
 
-.PHONY: all clean debug release run git
+.PHONY: all clean debug release run git lib
 
 # Default build (optimized)
 all: CFLAGS = $(DEFAULT_FLAGS)
@@ -59,14 +65,26 @@ $(OBJ_DIR) $(BIN_DIR):
 
 # Clean build artifacts
 clean:
-	rm -rf $(OBJ_DIR) $(BIN_DIR)
+	rm -rf $(OBJ_DIR) $(BIN_DIR) str.o
 
 # Run the debug version
 run: debug
 	./$(TARGET)
 
-git: 
-	rm -rf $(BIN_DIR) $(OBJ_DIR)
+# Build monolithic object file str.o from all sources except example.c
+lib: CFLAGS = $(RELEASE_FLAGS)
+lib: str.o
+
+str.o: $(LIB_OBJS)
+	$(COMPILER) -r $^ -o $@
+
+# Pattern rule for compiling library object files with release flags
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
+	@mkdir -p $(@D)
+	$(COMPILER) $(RELEASE_FLAGS) -c $< -o $@
+
+# Commit the source
+git: clean
 	git add .
 	git commit -F -
 	git push

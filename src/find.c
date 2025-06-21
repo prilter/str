@@ -12,7 +12,7 @@ ___find___(str *ln, const char *s, size_t pos)
     return NPOS;
 
   res = strstr(ln->c_str + pos, s) - ln->c_str;
-  if (res < 0 || res > strlen(ln->c_str))
+  if ((int)res < 0 || res > strlen(ln->c_str))
     return NPOS;
   return res;
 }
@@ -36,7 +36,7 @@ ___find_n___(str *ln, const char *s, size_t pos, size_t count)
   res = strstr(ln->c_str + pos, needle) - ln->c_str;
   free(needle);
 
-  if (res < 0 || res > strlen(ln->c_str))
+  if ((int)res < 0 || res > strlen(ln->c_str))
     return NPOS;
   return res;
 }
