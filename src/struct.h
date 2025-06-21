@@ -11,14 +11,14 @@ typedef struct str {
   size_t is_free;
   
   /* ASSIGN */
-  STR   (*assign_line)    (struct str *, const char *);
-  STR   (*assign_char)    (struct str *, size_t, int);
-  STR   (*assign_substr)  (struct str *, const char *, size_t, size_t);
+  STR   (*assign_ln)      (struct str *, const char *);
+  STR   (*assign_ch)      (struct str *, int, size_t);
+  STR   (*assign_sub)     (struct str *, const char *, size_t, size_t);
 
   /* STRING */
   STR   (*emstr)          (struct str *restrict);
   STR   (*newstr)         (struct str *restrict, const char *restrict);
-  STR   (*strchs)         (struct str *self, size_t, int); /* LIKE string(size_t, char) FROM C++ */
+  STR   (*strchs)         (struct str *self, int, size_t); /* LIKE string(size_t, char) FROM C++ */
   STR   (*newnstr)        (struct str *, const char *, size_t);
 
   /* INSERT */
@@ -46,18 +46,18 @@ typedef struct str {
 
   /* OTHER */
   size_t (*len)           (struct str *restrict);
-  STR   (*push_back)      (struct str *, int ch);
-  char *(*back)           (struct str *restrict);
-  char *(*front)          (struct str *restrict);
-  int   (*empty)          (struct str *restrict);
+  STR    (*push_back)     (struct str *, int ch);
+  char  *(*back)          (struct str *restrict);
+  char  *(*front)         (struct str *restrict);
+  int    (*empty)         (struct str *restrict);
   size_t (*size)          (struct str *restrict);
   size_t (*count_ch)      (struct str *, int);
   size_t (*count)         (struct str *, const char *);
-  char  (*find_first_of)  (struct str *, const char *, size_t);
-  char  (*find_last_of)   (struct str *, const char *, size_t);
-  STR   (*substr)         (struct str *restrict, size_t, size_t);
-  STR   (*find)           (struct str *, const char *, size_t, size_t);
-  STR   (*copy)           (struct str *restrict, size_t);
+  char   (*find_first_of) (struct str *, const char *, size_t);
+  char   (*find_last_of)  (struct str *, const char *, size_t);
+  STR    (*substr)        (struct str *restrict, size_t, size_t);
+  STR    (*find)          (struct str *, const char *, size_t, size_t);
+  STR    (*copy)          (struct str *restrict, size_t);
 
   /* FREE */
   size_t  (*free_str)     (struct str *restrict);
@@ -66,9 +66,6 @@ typedef struct str {
 
 
 /* TODO
-  ELEMENT ACCESS
-const char* data() const noexcept;
-
   CAPACITY
 void reserve(size_t n = 0);
 size_t capacity() const noexcept;

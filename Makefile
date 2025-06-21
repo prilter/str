@@ -7,11 +7,11 @@ OBJ_DIR = objects
 BIN_DIR = bin
 
 # Source directories (add new directories here)
-SRC_DIRS = $(SRC_DIR) $(SRC_DIR)/assign $(SRC_DIR)/str $(SRC_DIR)/erase $(SRC_DIR)/to_string $(SRC_DIR)/replace # Add more directories as needed
+SRC_DIRS = $(SRC_DIR) $(SRC_DIR)/str $(SRC_DIR)/erase $(SRC_DIR)/to_string $(SRC_DIR)/replace # Add more directories as needed
 
 # Compiler flags by build type
-DEBUG_FLAGS = -Wall -Wextra -Werror -g -DDEBUG -O0
-RELEASE_FLAGS = -O3 -DNDEBUG
+DEBUG_FLAGS   = -D_GNU_SOURCE -Wall -Wextra -Werror -g -DDEBUG -O0
+RELEASE_FLAGS = -D_GNU_SOURCE -O3 -DNDEBUG
 DEFAULT_FLAGS = -D_GNU_SOURCE
 
 # Linker flags

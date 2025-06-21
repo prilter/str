@@ -6,9 +6,9 @@
 
 /* REAL FUNCTIONS */
 /* ASSIGN */
-extern STR   ___assign_line___(str *self, const char *s);
-extern STR   ___assign_char___(str *self, size_t, int);
-extern STR   ___assign_substr___(str *self, const char *, size_t, size_t);
+extern STR   ___assign_ln___(str *self, const char *s);
+extern STR   ___assign_ch___(str *self, int, size_t);
+extern STR   ___assign_sub___(str *self, const char *, size_t, size_t);
 
 /* STRING */
 extern STR   ___emstr___(str *restrict self);
@@ -65,14 +65,14 @@ str init_str(size_t sz)
     .is_free = 0,
 
     /* ASSIGN */
-    .assign_line   = ___assign_line___ ,
-    .assign_char   = ___assign_char___ ,
-    .assign_substr = ___assign_substr___ ,
+    .assign_ln     = ___assign_ln___ ,
+    .assign_ch     = ___assign_ch___ ,
+    .assign_sub    = ___assign_sub___ ,
 
     /* STRING */
     .emstr         = ___emstr___,
     .newstr        = ___newstr___,
-    .strchs        = ___assign_char___,
+    .strchs        = ___assign_ch___,
     .newnstr       = ___newnstr___,
 
     /* INSERT */
