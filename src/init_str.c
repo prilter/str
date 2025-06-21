@@ -17,8 +17,8 @@ extern STR   ___newnstr___(str *self, const char *s, size_t n);
 
 /* INSERT */
 extern STR ___insert___(str *line, const char *s, size_t x);
-extern STR ___insertn___(str *line, const char *s, size_t x, size_t n);
-extern STR ___insert_char___(str *line, const char ch, size_t x);
+extern STR ___insert_n___(str *line, const char *s, size_t x, size_t n);
+extern STR ___insert_ch___(str *line, const char ch, size_t x);
 
 /* ERASE */
 extern STR ___erase_sub___(str *line, size_t st, size_t end);
@@ -77,8 +77,8 @@ str init_str(size_t sz)
 
     /* INSERT */
     .insert        = ___insert___,
-    .insertn       = ___insertn___,
-    .insert_char   = ___insert_char___,
+    .insert_n      = ___insert_n___,
+    .insert_ch     = ___insert_ch___,
 
     /* ERASE */
     .erase_sub     = ___erase_sub___,

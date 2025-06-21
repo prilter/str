@@ -23,8 +23,8 @@ typedef struct str {
 
   /* INSERT */
   STR   (*insert)         (struct str *, const char *, size_t);
-  STR   (*insertn)        (struct str *, const char *, size_t, size_t);
-  STR   (*insert_char)    (struct str *, const char, size_t);
+  STR   (*insert_n)       (struct str *, const char *, size_t, size_t);
+  STR   (*insert_ch)      (struct str *, const char, size_t);
 
   /* ERASE */
   STR   (*erase_sub)      (struct str *, size_t st, size_t end);
@@ -67,7 +67,6 @@ typedef struct str {
 
 /* TODO
   ELEMENT ACCESS
-char& at(size_t pos);
 const char& at(size_t pos) const;
 const char* data() const noexcept;
 
@@ -78,7 +77,6 @@ void shrink_to_fit();
 
   MODIFIERS
 string& append(const string& str, size_t subpos, size_t sublen);
-string& append(size_t n, char c);
 template <class InputIterator> string& append(InputIterator first, InputIterator last);
 template <class InputIterator> void insert(iterator p, InputIterator first, InputIterator last);
 string& replace(size_t pos, size_t len, const string& str);
