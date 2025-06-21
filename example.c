@@ -2,27 +2,14 @@
 #include "src/str.h"
 
 /* GET ENGLISH ALPHABET */
-str get_ascii_uppercase(void);
 int 
 main(void)
 {
-  str s = get_ascii_uppercase();
+  const char *s = "123.45abc";
+  size_t idx;
 
-  putc(at(&s, -7), stdout);
-  putchar('\n');
-
-  if (s.free_str(&s))
-    puts("Successful free");
+  float f = stof(s, &idx);
+  printf("Source: %s\nResult: %.2f\nParsed up to index: %zu\nRemaining string: '%s'\n", s, f, idx, s + idx);
 
   return 0;
-}
-
-str 
-get_ascii_uppercase(void)
-{
-  str res = init_str(30);
-  for (int i = 65; i <= 90; i++)
-    res.push_back(&res,i);
-
-  return res;
 }

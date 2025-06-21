@@ -12,7 +12,7 @@ SRC_DIRS = $(SRC_DIR) $(SRC_DIR)/assign $(SRC_DIR)/str $(SRC_DIR)/insert $(SRC_D
 # Compiler flags by build type
 DEBUG_FLAGS = -Wall -Wextra -Werror -g -DDEBUG -O0
 RELEASE_FLAGS = -O3 -DNDEBUG
-DEFAULT_FLAGS =
+DEFAULT_FLAGS = -D_GNU_SOURCE
 
 # Linker flags
 LDFLAGS = -O3
