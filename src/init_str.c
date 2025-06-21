@@ -29,6 +29,7 @@ extern STR ___pop_back___(str *restrict line);
 /* APPEND */
 extern STR    ___append___(str *self, const char *res);
 extern STR    ___append_n___(str *self, const char *res, size_t n);
+extern STR    ___append_chs___(str *s, int ch, size_t n);
 
 /* REPLACE */
 extern STR    ___replace___(str *self, size_t pos, size_t count, const char *add);
@@ -88,6 +89,7 @@ str init_str(size_t sz)
     /* APPEND */
     .append        = ___append___ ,
     .append_n      = ___append_n___ ,
+    .append_chs    = ___append_chs___ ,
 
     /* REPLACE */
     .replace       = ___replace___,

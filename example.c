@@ -8,7 +8,7 @@ main(void)
 {
   str s = get_ascii_uppercase();
 
-  puts(s.append_n(&s, s.data, 5).c_str);
+  puts(s.append_chs(&s, '7', 3).c_str + 26);
   if (s.free_str(&s))
     puts("Successful free");
 

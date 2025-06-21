@@ -35,6 +35,7 @@ typedef struct str {
   /* APPEND */
   STR   (*append)         (struct str *, const char *);
   STR   (*append_n)       (struct str *, const char *, size_t);
+  STR   (*append_chs)     (struct str *, int, size_t);
 
   /* REPLACE */
   STR   (*replace)        (struct str *, size_t, size_t, const char *);
@@ -77,7 +78,6 @@ void shrink_to_fit();
 
   MODIFIERS
 string& append(const string& str, size_t subpos, size_t sublen);
-string& append(const char* s, size_t n);
 string& append(size_t n, char c);
 template <class InputIterator> string& append(InputIterator first, InputIterator last);
 template <class InputIterator> void insert(iterator p, InputIterator first, InputIterator last);
