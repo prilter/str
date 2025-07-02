@@ -5,7 +5,10 @@ typedef struct str {
     char *c_str;
     char *data;
   };
-  size_t alloced;
+  union {
+    size_t alloced;
+    size_t capacity;
+  };
   size_t is_free;
 } str;
 
