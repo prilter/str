@@ -5,7 +5,7 @@ extern const size_t VALUE_WAS_RELEASED;
 const size_t NPOS = -1;
 
 size_t
-___rfind_ch___(str *s, int ch)
+rfind_ch(str *s, int ch)
 {
   char *ln;
   size_t len;

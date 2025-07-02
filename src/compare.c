@@ -1,7 +1,7 @@
 #include <string.h>
 
 int
-_compare(char *s1, char *s2)
+compare(char *s1, char *s2)
 {
   int l1, l2;
 

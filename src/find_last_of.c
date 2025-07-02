@@ -2,7 +2,7 @@
 #include "struct.h"
 
 char
-___find_last_of___(str *self, const char *list, size_t pos)
+find_last_of(str *self, const char *list, size_t pos)
 {
   /* INIT */
   char  *s;

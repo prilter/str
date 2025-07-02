@@ -2,7 +2,7 @@
 #include "struct.h"
 
 size_t
-___count___(str *self, const char *sub)
+count(str *self, const char *sub)
 {
   char  *s;
   size_t res;

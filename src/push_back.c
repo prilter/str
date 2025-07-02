@@ -8,7 +8,7 @@
 str *FAIL_ADDING = NULL;
 
 str
-___push_back___(str *self, int ch)
+push_back(str *self, int ch)
 {
   size_t len;
   len = strlen(self->c_str);

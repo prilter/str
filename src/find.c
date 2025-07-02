@@ -4,7 +4,7 @@
 /* FIND */
 extern const size_t NPOS;
 size_t
-___find___(str *ln, const char *s, size_t pos)
+find(str *ln, const char *s, size_t pos)
 {
   size_t res;
 
@@ -21,7 +21,7 @@ ___find___(str *ln, const char *s, size_t pos)
 /* FIND_N */
 extern void free(void *);
 size_t
-___find_n___(str *ln, const char *s, size_t pos, size_t count)
+find_n(str *ln, const char *s, size_t pos, size_t count)
 {
   /* INIT */
   char *needle;

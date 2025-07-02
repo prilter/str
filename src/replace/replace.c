@@ -3,7 +3,7 @@
 #include <string.h>
 
 str 
-___replace___(str *self,  size_t pos, size_t count, const char *add)
+replace(str *self,  size_t pos, size_t count, const char *add)
 {
   if (pos > strlen(self->c_str))
     return *self;

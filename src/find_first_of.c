@@ -2,7 +2,7 @@
 #include "struct.h"
 
 char
-___find_first_of___(str *self, const char *list, size_t pos)
+find_first_of(str *self, const char *list, size_t pos)
 {
   /* INIT */
   char  *s;

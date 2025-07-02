@@ -17,7 +17,7 @@ count_(const char *s, const char *sub)
 }*/
 
 str 
-___replace_py___(str *self, const char *old, const char *new, int count) 
+replace_py(str *self, const char *old, const char *new, int count) 
 {
   old++, new++, count--;
   return *self;

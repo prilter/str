@@ -4,7 +4,7 @@
 extern str init_str(size_t sz);
 
 str
-___copy___(str *restrict s, size_t n)
+copy(str *restrict s, size_t n)
 {
   str res;
 

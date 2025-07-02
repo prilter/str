@@ -1,7 +1,5 @@
 #include <stddef.h>
 
-#define STR struct str
-
 typedef struct str {
   union {
     char *c_str;
@@ -9,61 +7,7 @@ typedef struct str {
   };
   size_t alloced;
   size_t is_free;
-  
-  /* ASSIGN */
-  STR   (*assign_ln)      (struct str *, const char *);
-  STR   (*assign_ch)      (struct str *, int, size_t);
-  STR   (*assign_sub)     (struct str *, const char *, size_t, size_t);
-
-  /* STRING */
-  STR   (*emstr)          (struct str *restrict);
-  STR   (*newstr)         (struct str *restrict, const char *restrict);
-  STR   (*strchs)         (struct str *self, int, size_t); /* LIKE string(size_t, char) FROM C++ */
-  STR   (*newnstr)        (struct str *, const char *, size_t);
-
-  /* INSERT */
-  STR   (*insert)         (struct str *, const char *, size_t);
-  STR   (*insert_n)       (struct str *, const char *, size_t, size_t);
-  STR   (*insert_ch)      (struct str *, const char, size_t);
-
-  /* ERASE */
-  STR   (*erase_sub)      (struct str *, size_t st, size_t end);
-  STR   (*erase_s)        (struct str *, const char *);
-  STR   (*erase_ch)       (struct str *, int, size_t);
-  STR   (*pop_back)       (struct str *restrict);
-
-  /* APPEND */
-  STR   (*append)         (struct str *, const char *);
-  STR   (*append_n)       (struct str *, const char *, size_t);
-  STR   (*append_chs)     (struct str *, int, size_t);
-
-  /* REPLACE */
-  STR   (*replace)        (struct str *, size_t, size_t, const char *);
-  STR   (*replace_py)     (struct str *, const char *, const char *, size_t);
-
-  /* RFIND */
-  size_t (*rfind_ch)       (struct str *, int);
-
-  /* OTHER */
-  size_t (*len)           (struct str *restrict);
-  STR    (*push_back)     (struct str *, int ch);
-  char  *(*back)          (struct str *restrict);
-  char  *(*front)         (struct str *restrict);
-  int    (*empty)         (struct str *restrict);
-  size_t (*size)          (struct str *restrict);
-  size_t (*count_ch)      (struct str *, int);
-  size_t (*count)         (struct str *, const char *);
-  char   (*find_first_of) (struct str *, const char *, size_t);
-  char   (*find_last_of)  (struct str *, const char *, size_t);
-  STR    (*substr)        (struct str *restrict, size_t, size_t);
-  size_t (*find_n)        (struct str *, const char *, size_t, size_t);
-  size_t (*find)          (struct str *, const char *, size_t);
-  STR    (*copy)          (struct str *restrict, size_t);
-
-  /* FREE */
-  size_t  (*free_str)     (struct str *restrict);
 } str;
-
 
 
 /* TODO

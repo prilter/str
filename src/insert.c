@@ -7,7 +7,7 @@ extern str *FAIL_ADDING;
 
 /* INSERT */
 str
-___insert___(str *line, const char *s, size_t x)
+insert(str *line, const char *s, size_t x)
 {
   size_t linelen, slen;
 
@@ -32,13 +32,13 @@ ___insert___(str *line, const char *s, size_t x)
 
 /* INSERT_N */
 str
-___insert_n___(str *line, const char *s, size_t x, size_t n)
+insert_n(str *line, const char *s, size_t x, size_t n)
 {
   char buf[n];
   memcpy(buf, s, n);
   buf[n] = '\0';
 
-  return ___insert___(line, buf, x);
+  return insert(line, buf, x);
 }
 
 /* INSERT_CH */

@@ -3,7 +3,7 @@
 #include <ctype.h>
 
 int
-___empty___(str *restrict self)
+empty(str *restrict self)
 {
   if (strcmp(self->c_str, "\0") == 0 || self->is_free)
     return 1;

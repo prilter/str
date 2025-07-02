@@ -7,7 +7,7 @@ extern str *FAIL_ADDING;
 
 /* APPEND */
 str 
-___append___(str *self, const char *s) 
+append(str *self, const char *s) 
 {
   size_t dlen = strlen(self->c_str);
   size_t slen = strlen(s);
@@ -24,7 +24,7 @@ ___append___(str *self, const char *s)
 
 /* APPEND_N */
 str 
-___append_n___(str *self, const char *s, size_t n) 
+append_n(str *self, const char *s, size_t n) 
 {
   size_t dlen = strlen(self->c_str);
   size_t slen = strlen(s);
@@ -49,7 +49,7 @@ ___append_chs___(str *s, int ch, size_t n)
     return *FAIL_ADDING;
 
   memset(buf, ch, n);
-  ___append___(s, buf);
+  append(s, buf);
 
   free(buf);
   return *s;

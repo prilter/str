@@ -17,7 +17,7 @@ extern str *FAIL_ADDING;
 
 /* ASSIGN LINE */
 str 
-___assign_ln___(str *self, const char *s)
+assign_ln(str *self, const char *s)
 {
   if (!s)
     return *self; 
@@ -30,7 +30,7 @@ ___assign_ln___(str *self, const char *s)
 
 /* ASSIGN SYMBOL */
 str
-___assign_ch___(str *self, int sym, size_t len) 
+assign_ch(str *self, int sym, size_t len) 
 {
   if (!len)
     return *self;
@@ -43,7 +43,7 @@ ___assign_ch___(str *self, int sym, size_t len)
 
 /* ASSIGN SUBSTRING */
 str
-___assign_sub___(str *self, const char *s, size_t st, size_t end)
+assign_sub(str *self, const char *s, size_t st, size_t end)
 {
   size_t buf;
 

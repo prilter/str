@@ -4,7 +4,7 @@
 const char *FAIL_MAKING = NULL;
 
 str
-___emstr___(str *restrict self) /* string() FROM C++ */
+emstr(str *restrict self) /* string() FROM C++ */
 {
   if (self->alloced == 0)
     self->alloced += 1;

@@ -3,7 +3,7 @@
 extern const size_t VALUE_WAS_RELEASED;
 
 size_t
-___count_ch___(str *s, int ch)
+count_ch(str *s, int ch)
 {
   size_t res;
   char  *s1;
