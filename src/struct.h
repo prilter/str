@@ -16,7 +16,6 @@ typedef struct str {
 /* TODO
   CAPACITY
 void reserve(size_t n = 0);
-size_t capacity() const noexcept;
 void shrink_to_fit();
 
   MODIFIERS
