@@ -5,7 +5,9 @@ int
 main(void)
 {
   str s = init_str(AUTO_ALLOC);
-  printf("%zd\n", s.capacity);
+
+  assign_ln(&s, "Hi Hi Hi Hi Hi!");
+  puts(replace_py(&s, "Hi", "Hello", 3).c_str);
 
   if (free_str(&s))
     puts("Successful free");

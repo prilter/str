@@ -1,24 +1,28 @@
 #include <string.h>
-#include <stdio.h>
-#include <malloc.h>
 #include "../struct.h"
 
-/*static size_ 
-count_(const char *s, const char *sub)
-{
-  if (!s || !sub) 
-    return 0;
+extern str erase(str *line, const char *s);
+extern str insert(str *line, const char *s, size_t x);
 
-  size_t res;
-  size_t sublen;
-
-  for (res = 0, sublen = strlen(sub); (s = strstr(s, sub)); s += sublen, res++);
-  return res;
-}*/
+extern str *FAIL_ADDING;
 
 str 
 replace_py(str *self, const char *old, const char *new, int count) 
 {
-  old++, new++, count--;
+  size_t x;
+  char *b;
+  str str_b;
+  
+  if (self->is_free || !old || !new || !count)
+    return *self;
+
+  for (;count-- && (b = strstr(self->c_str, old));) {
+    x = b - self->c_str;
+    erase(self, old);
+    str_b = insert(self, new, x);
+    if (&str_b == FAIL_ADDING)
+      return *FAIL_ADDING;
+  }
+  
   return *self;
 }
