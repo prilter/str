@@ -1,5 +1,5 @@
 # str
-Modern library for work with new type(str). Based on c++ std string library
+Modern library for work with new type(str). Based on c++ std string library and default python functions
 
 # Using guide
  1) Build the library:

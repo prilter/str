@@ -5,9 +5,9 @@ int
 main(void)
 {
   str s = init_str(AUTO_ALLOC);
-
-  assign_ln(&s, "Hi Hi Hi Hi Hi!");
-  puts(replace_py(&s, "Hi", "Hello", 3).c_str);
+  assign_ln(&s, "123");
+  join(&s, " ", "Helloworld!");
+  puts(s.c_str);
 
   if (free_str(&s))
     puts("Successful free");

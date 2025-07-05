@@ -7,7 +7,7 @@ str
 emstr(str *restrict self) /* string() FROM C++ */
 {
   if (self->alloced == 0)
-    self->alloced += 1;
+    self->alloced++;
   memset(self->c_str, 0, self->alloced);
   return *self;
 }

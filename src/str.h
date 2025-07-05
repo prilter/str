@@ -61,6 +61,9 @@ extern str    append_chs(str *s, int ch, size_t n);
 extern str    replace(str *self, size_t pos, size_t count, const char *add);
 extern str    replace_py(str *self, const char *to_rep, const char *to_get, size_t times);
 
+/* PYTHON */
+extern str join(str *ln, const char *sep, char *s);
+
 /* RFIND */
 extern size_t rfind_ch(str *s, int ch);
 

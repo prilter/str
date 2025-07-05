@@ -2,12 +2,12 @@
 #include <malloc.h>
 #include <string.h>
 
-extern str *FAIL_MAKING;
+extern str *FAIL_MAPPING;
 
 #define MAPPING(S, len) \
   if (S->alloced < len) {\
     if (!(S->c_str = realloc(S->c_str, len + 4)))\
-      return *FAIL_MAKING;\
+      return *FAIL_MAPPING;\
     S->alloced = len + 4;\
   }\
 
