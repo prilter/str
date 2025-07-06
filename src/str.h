@@ -1,7 +1,7 @@
 /*
  * TODO:
- * replace_py
  * Add reserve functions
+ * Add "buffer" functions with buffer argument
 */
 
 #include "struct.h"
@@ -63,6 +63,9 @@ extern str    replace_py(str *self, const char *to_rep, const char *to_get, size
 
 /* PYTHON */
 extern str join(str *ln, const char *sep, char *s);
+extern str uppercase(str *restrict s);
+extern str lowercase(str *restrict s);
+extern str swapcase(str *restrict s);
 
 /* RFIND */
 extern size_t rfind_ch(str *s, int ch);
