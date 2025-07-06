@@ -1,7 +1,6 @@
 /*
  * TODO:
  * Add reserve functions
- * Add "buffer" functions with buffer argument
 */
 
 #include "struct.h"
@@ -116,3 +115,9 @@ static inline const char *at_ln(str *restrict s, int idx) {
     idx = (sign) * (strlen(s->data) - (sign == 1));
   return (s->c_str + (sign == -1) * strlen(s->c_str) + idx);
 }
+
+/* BUFFER:    to_buf src string   function args(except str) */
+#define buffer(b_u_f, s_t_r_i_n_g, f_u_n_c, ...) do {\
+  b_u_f = copy(&s_t_r_i_n_g, s_t_r_i_n_g.alloced);\
+  f_u_n_c(&b_u_f __VA_OPT__(,) __VA_ARGS__);\
+} while(0)
