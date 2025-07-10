@@ -1,4 +1,3 @@
-#include <malloc.h>
 #include <string.h>
 #include "struct.h"
 
@@ -24,7 +23,6 @@ center(str *s, int ch, size_t w)
   }
   if (strlen(s->c_str) < w) /* SOMETHING WRONG WITH LENGTH */
     push_back(s, ch); 
-
 
   /* END */
   s->is_free = 0;
