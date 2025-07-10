@@ -69,8 +69,9 @@ static inline char capitalize(str *restrict s) {extern int toupper(int); return 
 extern str center(str *s, int ch, size_t w);
 extern str zfill(str *s, int ch, size_t len);
 static inline str strip(str *restrict s) {erase_n(s, " ", s->alloced); erase_n(s, "\t", s->alloced); return *s;}
-#define ord(ch) ((int)(ch))
-#define chr(n)  ((char)(n))
+#define ord(ch)    ((int)(ch))
+#define chr(n)     ((char)(n))
+#define quote(...) #__VA_ARGS__
 
 /* RFIND */
 extern size_t rfind_ch(str *s, int ch);

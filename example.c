@@ -4,6 +4,6 @@
 int 
 main(void)
 {
-  putc(chr(ord('\n')), stdout);
+  puts(quote([1,2,3,4,5]));
   return 0;
 }
