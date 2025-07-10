@@ -65,6 +65,8 @@ extern str join(str *ln, const char *sep, char *s);
 extern str uppercase(str *restrict s);
 extern str lowercase(str *restrict s);
 extern str swapcase(str *restrict s);
+static inline char capitalize(str *restrict s) {extern int toupper(int); return toupper(*s->c_str);}
+extern str center(str *restrict s, size_t w, int ch);
 
 /* RFIND */
 extern size_t rfind_ch(str *s, int ch);
