@@ -1,44 +1,32 @@
-#include <assert.h>
 #include <malloc.h>
-#include <stdio.h>
 #include <string.h>
 #include "struct.h"
 
-extern const str *FAIL_MAPPING;
-extern int   empty(str *restrict self);
+extern str insert_ch(str *line, const char ch, size_t x);
+extern str push_back(str *self, int ch);
 
 str
 center(str *s, int ch, size_t w)
 { 
   /* INIT */
-  char *b1, *b2;
-  size_t len, st;
-
-  /* LEN AND ST */
-  len = strlen(s->c_str);
-  st  = (size_t)((w - len) >> 1);
+  size_t st, len;
 
   /* CHECKING PROBLEMS */
+  len = strlen(s->c_str);
   if (w <= len)
     return *s;
 
-  /* MAPPING */
-  if (s->alloced < w * sizeof(char)) {
-    s->alloced += w * sizeof(char) + 4;
-    if (!(s->c_str = realloc(s->c_str, s->alloced))) {
-      s->alloced -= w * sizeof(char) + 4;
-      return *FAIL_MAPPING;
-    }
-  }
-
   /* MAIN */
-  memset((b1 = malloc(st + 4)), ch, st);
-  b2 = strdup(s->c_str);
-  sprintf(s->c_str, "%s%s%s", b1, b2, b1);
+  st = (size_t)((w - len) >> 1);
+  for (;st--;) {
+    insert_ch(s, ch, 0);
+    push_back(s, ch);
+  }
+  if (strlen(s->c_str) < w) /* SOMETHING WRONG WITH LENGTH */
+    push_back(s, ch); 
+
 
   /* END */
-  free(b1); free(b2);
-  assert(b1 || b2);
   s->is_free = 0;
   return *s;
 }

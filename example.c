@@ -7,7 +7,7 @@ main(void)
   str s = init_str(AUTO_ALLOC);
 
   assign_ln(&s, "Hello");
-  zfill(&s, '0', 20);
+  center(&s, '0', 20);
   printf("Line:   %s\nLength: %zd\n", s.c_str, len(&s));
 
   if (free_str(&s))
