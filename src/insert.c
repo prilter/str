@@ -43,7 +43,7 @@ insert_n(str *line, const char *s, size_t x, size_t n)
 
 /* INSERT_CH */
 str
-___insert_ch___(str *line, const char ch, size_t x)
+insert_ch(str *line, const char ch, size_t x)
 {
   size_t linelen;
 

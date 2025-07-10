@@ -1,5 +1,5 @@
 #include <assert.h>
-#include <stdlib.h>
+#include <malloc.h>
 #include <stdio.h>
 #include <string.h>
 #include "struct.h"
@@ -8,7 +8,7 @@ extern const str *FAIL_MAPPING;
 extern int   empty(str *restrict self);
 
 str
-center(str *restrict s, size_t w, int ch)
+center(str *s, int ch, size_t w)
 { 
   /* INIT */
   char *b1, *b2;
