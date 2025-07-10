@@ -4,6 +4,6 @@
 int 
 main(void)
 {
-  printf("%d\n", ord(' '));
+  putc(chr(ord('\n')), stdout);
   return 0;
 }
