@@ -1,7 +1,15 @@
 #include <string.h>
 #include "struct.h"
 
-extern str init_str(size_t sz);
+str init_str(size_t sz)
+{
+  extern void *malloc(size_t);
+  return (str) { 
+    .data = (char *)malloc(sz), 
+    .alloced = sz, 
+    .is_free = 0,
+  };
+}
 
 str
 copy(str *restrict s, size_t n)

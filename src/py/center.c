@@ -1,5 +1,5 @@
 #include <string.h>
-#include "struct.h"
+#include "../struct.h"
 
 extern str insert_ch(str *line, const char ch, size_t x);
 extern str push_back(str *self, int ch);

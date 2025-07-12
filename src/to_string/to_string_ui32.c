@@ -4,7 +4,16 @@
 
 #include "../struct.h"
 
-extern str init_str(size_t);
+#define AUTO_ALLOC 0
+static str init_str(size_t sz)
+{
+  extern void *malloc(size_t);
+  return (str) { 
+    .data = (char *)malloc(sz), 
+    .alloced = (sz == AUTO_ALLOC) ? 1:sz, 
+    .is_free = 0,
+  };
+}
 
 static int
 ___pow10___(size_t deg)

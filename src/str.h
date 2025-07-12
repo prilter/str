@@ -17,16 +17,13 @@ extern const str   *FAIL_MAPPING;
 extern const size_t NPOS;
 
 /* INIT */
-#define AUTO_ALLOC 0
-str init_str(size_t sz)
-{
-  extern void *malloc(size_t);
-  return (str) { 
-    .data = (char *)malloc(sz), 
-    .alloced = (sz == AUTO_ALLOC) ? 1:sz, 
-    .is_free = 0,
+#define _G_E_T_A_R_G_(_1, ...) _1
+#define init_str(...) \
+  (str) { \
+    .data = (char *)malloc(_G_E_T_A_R_G_(__VA_OPT__(__VA_ARGS__,) 1)), \
+    .alloced = _G_E_T_A_R_G_(__VA_OPT__(__VA_ARGS__,) 1), \
+    .is_free = 0, \
   };
-}
 
 /* FUNCTIONS */
 /* ASSIGN */
@@ -71,7 +68,6 @@ extern str zfill(str *s, int ch, size_t len);
 static inline str strip(str *restrict s) {erase_n(s, " ", s->alloced); erase_n(s, "\t", s->alloced); return *s;}
 #define ord(ch)    ((int)(ch))
 #define chr(n)     ((char)(n))
-#define quote(...) #__VA_ARGS__
 
 /* RFIND */
 extern size_t rfind_ch(str *s, int ch);

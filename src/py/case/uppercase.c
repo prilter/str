@@ -1,8 +1,8 @@
 #include <ctype.h>
-#include "../struct.h"
+#include "../../struct.h"
 
 str
-lowercase(str *restrict s)
+uppercase(str *restrict s)
 {
   char *b;
 
@@ -11,7 +11,7 @@ lowercase(str *restrict s)
 
   b = s->c_str;
   for (;*b; b++)
-    *b = tolower(*b);
+    *b = toupper(*b);
 
   return *s;
 }

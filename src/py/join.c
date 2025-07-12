@@ -2,7 +2,7 @@
 #include <string.h>
 #include <malloc.h>
 
-#include "struct.h"
+#include "../struct.h"
 
 extern const char *FAIL_ADDING;
 extern const str  *FAIL_MAPPING;

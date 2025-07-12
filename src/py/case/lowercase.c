@@ -1,8 +1,8 @@
 #include <ctype.h>
-#include "../struct.h"
+#include "../../struct.h"
 
 str
-swapcase(str *restrict s)
+lowercase(str *restrict s)
 {
   char *b;
 
@@ -11,7 +11,7 @@ swapcase(str *restrict s)
 
   b = s->c_str;
   for (;*b; b++)
-    *b = islower(*b) ? toupper(*b):tolower(*b);
+    *b = tolower(*b);
 
   return *s;
 }
