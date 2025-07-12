@@ -93,13 +93,13 @@ static inline char *front(str *restrict s)   {return &s->c_str[0];}
 static inline char *back(str *restrict s)    {extern size_t strlen(const char *); return s->c_str + strlen(s->c_str) - 1;}
 
 /* TO_STRING */
-#define to_string(num, type) (to_string_##type(num))
-extern str to_string_i16(int);
-extern str to_string_ui16(unsigned int);
-extern str to_string_i32(long int);
-extern str to_string_ui32(unsigned long int);
-extern str to_string_i64(long long int);
-extern str to_string_ui64(unsigned long long int);
+#define to_string(buf, num, type) (to_string_##type(buf, num))
+extern str to_string_i16(str *restrict s, int);
+extern str to_string_ui16(str *restrict, unsigned int);
+extern str to_string_i32(str *restrict, long int);
+extern str to_string_ui32(str *restrict, unsigned long int);
+extern str to_string_i64(str *restrict, long long int);
+extern str to_string_ui64(str *restrict, unsigned long long int);
 
 /* 2 STR */
 extern size_t swap(str *, str *);

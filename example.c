@@ -6,17 +6,18 @@ int
 main(void)
 {
   /* INIT */
-  str s0 = init_str();
-  str s1 = init_str(100);
+  str s = init_str(); 
 
-  /* INFO */
-  printf("s0: %zd alloced\ns1: %zd alloced\n", s0.alloced, s1.alloced);
+  /* CHECK */
+  to_string_i32(&s, -123456789);
+  puts(s.c_str);
+
+  to_string_ui32(&s, 10156789);
+  puts(s.c_str);
 
   /* FREE */
-  if (free_str(&s0))
-    puts("Successful free memory from s0");
-  if (free_str(&s1))
-    puts("Successful free memory from s1");
+  if (free_str(&s))
+    puts("Successful free memory");
 
   /* END */
   return 0;

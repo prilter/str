@@ -7,7 +7,7 @@ OBJ_DIR = objects
 BIN_DIR = bin
 
 # Source directories (add new directories here)
-SRC_DIRS = $(SRC_DIR) $(SRC_DIR)/str $(SRC_DIR)/erase $(SRC_DIR)/to_string $(SRC_DIR)/replace $(SRC_DIR)/py/case $(SRC_DIR)/py # Add more directories as needed
+SRC_DIRS = $(SRC_DIR) $(SRC_DIR)/str $(SRC_DIR)/erase $(SRC_DIR)/replace $(SRC_DIR)/py/case $(SRC_DIR)/py # Add more directories as needed
 
 # Compiler flags by build type
 DEBUG_FLAGS   = -D_GNU_SOURCE -Wall -Wextra -Werror -g -DDEBUG -O0

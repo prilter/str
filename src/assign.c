@@ -5,13 +5,13 @@ extern void  *memcpy(void *, const void *, unsigned long);
 extern size_t strlen(const char *);
 extern void  *memset(void *, int, size_t);
 
-extern str *FAIL_ADDING;
+extern str *FAIL_MAPPING;
 
 #define MAPPING(str, len) do {\
   if (str->alloced <= (len)*sizeof(char)) {\
     if (!(str->c_str = realloc(str->c_str, (len) * sizeof(char) + 4)))\
-      return *FAIL_ADDING;\
-    self->alloced = (len) * sizeof(char) + 4;\
+      return *FAIL_MAPPING;\
+    str->alloced = (len) * sizeof(char) + 4;\
   }\
 } while(0);
 
