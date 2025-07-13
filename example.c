@@ -12,9 +12,10 @@ main(void)
   append(&s, "world!");
   insert_ch(&s, ' ', 5);
 
-  printf("Before shrink_to_fit(): %zd\n", s.capacity);
-  shrink_to_fit(&s);
-  printf("After  shrink_to_fit(): %zd\n", s.capacity);
+  printf("Before resize(): %zd\n", s.capacity);
+  resize(&s, 25);
+  printf("After  resize(): %zd\n", s.capacity);
+
 
   /* FREE */
   if (free_str(&s))

@@ -27,8 +27,9 @@ extern const str   *FAILED_LESS_MEMORY;
 extern const char  *FAIL_ADDING;
 extern const char  *FAIL_MAKING; 
 extern const size_t VALUE_WAS_RELEASED;
-extern const str   *FAIL_MAPPING;
+extern const void  *FAIL_MAPPING;
 extern const size_t NPOS;
+extern const void   UNSAFE;
 
 /* INIT */
 #define _G_E_T_A_R_G_(_1, ...) _1
@@ -41,14 +42,14 @@ extern const size_t NPOS;
 
 /* FUNCTIONS */
 /* ASSIGN */
-extern str   assign_ln(str *self, const char *s);
-extern str   assign_ch(str *self, int, size_t);
-extern str   assign_sub(str *self, const char *, size_t, size_t);
+extern void  assign_ln(str *self, const char *s);
+extern void  assign_ch(str *self, int, size_t);
+extern void  assign_sub(str *self, const char *, size_t, size_t);
 
 /* STRING */
 extern str   emstr(str *restrict self);
-extern str   newstr(str *restrict self, const char *restrict s);
-extern str   newstr_n(str *self, const char *s, size_t n);
+extern void  newstr(str *restrict self, const char *restrict s);
+extern void  newstr_n(str *self, const char *s, size_t n);
 
 /* INSERT */
 extern str insert(str *line, const char *s, size_t x);
@@ -72,10 +73,10 @@ extern str    replace(str *self, size_t pos, size_t count, const char *add);
 extern str    replace_py(str *self, const char *to_rep, const char *to_get, size_t times);
 
 /* PYTHON */
-extern str join(str *ln, const char *sep, char *s);
-extern str uppercase(str *restrict s);
-extern str lowercase(str *restrict s);
-extern str swapcase(str *restrict s);
+extern void join(str *ln, const char *sep, char *s);
+extern str  uppercase(str *restrict s);
+extern str  lowercase(str *restrict s);
+extern str  swapcase(str *restrict s);
 static inline char capitalize(str *restrict s) {extern int toupper(int); return toupper(*s->c_str);}
 extern str center(str *s, int ch, size_t w);
 extern str zfill(str *s, int ch, size_t len);
@@ -93,11 +94,12 @@ extern size_t count_ch(str *, int);
 extern size_t count(str *, const char *);
 extern char   find_first_of(str *self, const char *list, size_t pos);
 extern char   find_last_of(str *self, const char *list, size_t pos);
-extern str    substr(str *restrict self, size_t, size_t);
+extern void   substr(str *restrict self, size_t, size_t);
 extern size_t find_n(str *, const char *, size_t, size_t);
 extern size_t find(str *, const char *, size_t);
 extern str    copy(str *restrict, size_t);
 extern void   shrink_to_fit(str *restrict);
+extern void   resize(str *restrict, size_t);
 
 /* FREE */
 extern size_t free_str(str *restrict self);
@@ -109,15 +111,15 @@ static inline char *back(str *restrict s)    {extern size_t strlen(const char *)
 
 /* TO_STRING */
 #define to_string(buf, num, type) (to_string_##type(buf, num))
-extern str to_string_i16(str *restrict s, int);
-extern str to_string_ui16(str *restrict, unsigned int);
-extern str to_string_i32(str *restrict, long int);
-extern str to_string_ui32(str *restrict, unsigned long int);
-extern str to_string_i64(str *restrict, long long int);
-extern str to_string_ui64(str *restrict, unsigned long long int);
+extern void to_string_i16(str *restrict s, int);
+extern void to_string_ui16(str *restrict, unsigned int);
+extern void to_string_i32(str *restrict, long int);
+extern void to_string_ui32(str *restrict, unsigned long int);
+extern void to_string_i64(str *restrict, long long int);
+extern void to_string_ui64(str *restrict, unsigned long long int);
 
-extern str to_string_f16(str *restrict, float);
-extern str to_string_f32(str *restrict, double);
+extern void to_string_f16(str *restrict, float);
+extern void to_string_f32(str *restrict, double);
 
 /* 2 STR */
 extern size_t swap(str *, str *);

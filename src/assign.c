@@ -5,7 +5,7 @@ extern void  *memcpy(void *, const void *, unsigned long);
 extern size_t strlen(const char *);
 extern void  *memset(void *, int, size_t);
 
-extern str *FAIL_MAPPING;
+extern void *FAIL_MAPPING;
 
 #define MAPPING(str, len) do {\
   if (str->alloced <= (len)*sizeof(char)) {\
@@ -16,51 +16,45 @@ extern str *FAIL_MAPPING;
 } while(0);
 
 /* ASSIGN LINE */
-str 
+void
 assign_ln(str *self, const char *s)
 {
   if (!s)
-    return *self; 
+    return; 
 
   MAPPING(self, strlen(s));
-
   memcpy(self->c_str, s, self->alloced);
-  return *self;
 }
 
 /* ASSIGN SYMBOL */
-str
-assign_ch(str *self, int sym, size_t len) 
+void
+assign_ch(str *s, int sym, size_t len) 
 {
-  if (!len)
-    return *self;
+  if (!len || s->is_free)
+    return;
 
-  MAPPING(self, len);
-
-  memset(self->c_str, sym, len);
-  return *self;
+  MAPPING(s, len);
+  memset(s->c_str, sym, len);
 }
 
 /* ASSIGN SUBSTRING */
-str
-assign_sub(str *self, const char *s, size_t st, size_t end)
+void
+assign_sub(str *ln, const char *s, size_t st, size_t end)
 {
   size_t buf;
 
   /* WRONG ARGUMENTS */
   if (!s)
-    return *self;
+    return;
 
   /* IF END > ST -> REVERSE ST AND END VALUES */
   if (end < st)
     {buf = st; st  = end; end = buf;}
 
-  MAPPING(self, end - st);
+  MAPPING(ln, end - st);
 
   /* COPY */
   for (buf = st; *(s + buf) && end--; buf++)
-    *(self->c_str + buf - st) = *(s + buf);
-
-  return *self;
+    *(ln->c_str + buf - st) = *(s + buf);
 }
 

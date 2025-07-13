@@ -13,8 +13,7 @@ typedef long double             f64;
 typedef double                  f32;
 typedef float                   f16;
 
-extern str *FAIL_ADDING;
-extern str *FAIL_MAPPING;
+extern void *FAIL_MAPPING;
 
 #define MAPPING(str, len) do {\
   if (str->alloced <= (len)*sizeof(char)) {\
@@ -24,12 +23,12 @@ extern str *FAIL_MAPPING;
   }\
 } while(0);
 
-#define CODE_U_WITHOUT_RET(buf, n, type) \
+#define CODE_U(buf, n, type) \
 {\
   type temp, len; \
 \
   if (buf->is_free) \
-    return *FAIL_ADDING; \
+    return *FAIL_MAPPING; \
 \
   len = 0, temp = n; \
   do { len++; temp /= 10; } while (temp); \
@@ -42,28 +41,23 @@ extern str *FAIL_MAPPING;
     n /= 10; \
   } \
 }
-#define CODE_U(buf, n, type) {\
-  CODE_U_WITHOUT_RET(buf, n, type); \
-  return *buf; \
-}
 
-str to_string_ui16(str *restrict buf, ui16 n) {CODE_U(buf, n, ui16);}
-str to_string_ui32(str *restrict buf, ui32 n) {CODE_U(buf, n, ui32);}
-str to_string_ui64(str *restrict buf, ui64 n) {CODE_U(buf, n, ui64);}
+void to_string_ui16(str *restrict buf, ui16 n) {CODE_U(buf, n, ui16);}
+void to_string_ui32(str *restrict buf, ui32 n) {CODE_U(buf, n, ui32);}
+void to_string_ui64(str *restrict buf, ui64 n) {CODE_U(buf, n, ui64);}
 
 extern str insert_ch(str *line, const char ch, size_t x);
 #define CODE_I(buf, n, type) \
 { \
   u##type un = (n < 0) ? -n:n; \
-  CODE_U_WITHOUT_RET(buf, un, u##type); \
+  CODE_U(buf, un, u##type); \
   if (n < 0) \
     insert_ch(buf, '-', 0); \
-  return *buf;\
 }
 
-str to_string_i16(str *restrict buf, i16 n) {CODE_I(buf, n, i16);}
-str to_string_i32(str *restrict buf, i32 n) {CODE_I(buf, n, i32);}
-str to_string_i64(str *restrict buf, i64 n) {CODE_I(buf, n, i64);}
+void to_string_i16(str *restrict buf, i16 n) {CODE_I(buf, n, i16);}
+void to_string_i32(str *restrict buf, i32 n) {CODE_I(buf, n, i32);}
+void to_string_i64(str *restrict buf, i64 n) {CODE_I(buf, n, i64);}
 
 /* FLOAT */
 static inline f64 pow_(f64 n, ui16 deg) {
@@ -88,7 +82,7 @@ static inline f64 floorl_(f64 x) {
     f64 y = (long double)((long long)x);
     return (y > x) ? y - 1.0L : y;
 } 
-#define CODE_UF_WITHOUT_RET(buf, n, type) \
+#define CODE_UF(buf, n, type) \
 { \
   ui16 dot_pos; \
   ui64 to_conv; \
@@ -105,11 +99,10 @@ static inline f64 floorl_(f64 x) {
 #define CODE_F(buf, n, type) \
 { \
   type un = (n < 0) ? -n:n; \
-  CODE_UF_WITHOUT_RET(buf, un, type); \
+  CODE_UF(buf, un, type); \
   if (n < 0) \
     insert_ch(buf, '-', 0); \
-  return *buf;\
 }
 
-str to_string_f16(str *restrict buf, f16 n) {CODE_F(buf, n, f16);}
-str to_string_f32(str *restrict buf, f32 n) {CODE_F(buf, n, f32);}
+void to_string_f16(str *restrict buf, f16 n) {CODE_F(buf, n, f16);}
+void to_string_f32(str *restrict buf, f32 n) {CODE_F(buf, n, f32);}
