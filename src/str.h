@@ -101,6 +101,9 @@ extern str to_string_ui32(str *restrict, unsigned long int);
 extern str to_string_i64(str *restrict, long long int);
 extern str to_string_ui64(str *restrict, unsigned long long int);
 
+extern str to_string_f16(str *restrict, float);
+extern str to_string_f32(str *restrict, double);
+
 /* 2 STR */
 extern size_t swap(str *, str *);
 extern int    compare(char *, char *);

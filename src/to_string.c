@@ -9,6 +9,10 @@ typedef long long int           i64;
 typedef long int                i32;
 typedef int                     i16;
 
+typedef long double             f64;
+typedef double                  f32;
+typedef float                   f16;
+
 extern str *FAIL_ADDING;
 extern str *FAIL_MAPPING;
 
@@ -38,7 +42,7 @@ extern str *FAIL_MAPPING;
     n /= 10; \
   } \
 }
-#define CODE_U(buf, b, type) {\
+#define CODE_U(buf, n, type) {\
   CODE_U_WITHOUT_RET(buf, n, type); \
   return *buf; \
 }
@@ -60,3 +64,53 @@ extern str insert_ch(str *line, const char ch, size_t x);
 str to_string_i16(str *restrict buf, i16 n) {CODE_I(buf, n, i16);}
 str to_string_i32(str *restrict buf, i32 n) {CODE_I(buf, n, i32);}
 str to_string_i64(str *restrict buf, i64 n) {CODE_I(buf, n, i64);}
+
+/* FLOAT */
+extern size_t strlen(const char *);
+#include <math.h>
+static inline f64 pow_(f64 n, ui16 deg) {
+    float res = 1.0f;
+    for (;deg--;) res *= n;
+    return res;
+}
+static float log10f_(float x) {
+    // Reduce x to [1, 10)
+    int count;
+    for (count = 0; x >= 10.0f; count++) x /= 10.0f;
+    for (;x < 1.0f; count--)             x *= 10.0f;
+
+    // Compute ln(x) using a series expansion
+    float y = (x - 1.0f) / (x + 1.0f);
+    float result = y;
+    for (float i = 3.0f; i <= 9.0f; i += 2.0f) 
+      result += pow_(y, i) / i;
+    return (2.0f * result + count * 2.3025851f) / 2.3025851f;
+}
+static inline f64 floorl_(f64 x) {
+    f64 y = (long double)((long long)x);
+    return (y > x) ? y - 1.0L : y;
+} 
+#define CODE_UF_WITHOUT_RET(buf, n, type) \
+{ \
+  ui16 dot_pos; \
+  ui64 to_conv; \
+\
+  dot_pos = (n == 0.0f) ? 1:(int)floorl_(log10f_(fabsf(n)))+1; \
+  for (;n != (type)floorl_((f64)n);) \
+    n *= 10; \
+\
+  to_conv = (ui64)n; \
+  to_string_ui64(buf, to_conv); \
+  insert_ch(buf, '.', dot_pos); \
+} 
+#define CODE_F(buf, n, type) \
+{ \
+  type un = (n < 0) ? -n:n; \
+  CODE_UF_WITHOUT_RET(buf, un, type); \
+  if (n < 0) \
+    insert_ch(buf, '-', 0); \
+  return *buf;\
+}
+
+str to_string_f16(str *restrict buf, f16 n) {CODE_F(buf, n, f16);}
+str to_string_f32(str *restrict buf, f32 n) {CODE_F(buf, n, f32);}

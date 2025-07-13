@@ -6,14 +6,15 @@ int
 main(void)
 {
   /* INIT */
-  str s = init_str(); 
+  str    s = init_str(); 
+  float  a = 5.6;
+  double b = -123.43;
 
   /* CHECK */
-  to_string_i32(&s, -123456789);
-  puts(s.c_str);
-
-  to_string_ui32(&s, 10156789);
-  puts(s.c_str);
+  to_string_f16(&s, a);
+  printf("f16:\nstr lib: %s\nGlibc formatting: %f\n\n", s.c_str, a);
+  to_string_f32(&s, b);
+  printf("f32:\nstr lib: %s\nGlibc formatting: %.14f\n\n", s.c_str, b);
 
   /* FREE */
   if (free_str(&s))
