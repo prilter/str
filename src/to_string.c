@@ -66,20 +66,18 @@ str to_string_i32(str *restrict buf, i32 n) {CODE_I(buf, n, i32);}
 str to_string_i64(str *restrict buf, i64 n) {CODE_I(buf, n, i64);}
 
 /* FLOAT */
-extern size_t strlen(const char *);
-#include <math.h>
 static inline f64 pow_(f64 n, ui16 deg) {
     float res = 1.0f;
     for (;deg--;) res *= n;
     return res;
 }
 static float log10f_(float x) {
-    // Reduce x to [1, 10)
+    /* REDUCE x TO [1, 10) */
     int count;
     for (count = 0; x >= 10.0f; count++) x /= 10.0f;
     for (;x < 1.0f; count--)             x *= 10.0f;
 
-    // Compute ln(x) using a series expansion
+    /* COMPUTE ln(X) USING A SERIES EXPANSION */
     float y = (x - 1.0f) / (x + 1.0f);
     float result = y;
     for (float i = 3.0f; i <= 9.0f; i += 2.0f) 
@@ -95,7 +93,8 @@ static inline f64 floorl_(f64 x) {
   ui16 dot_pos; \
   ui64 to_conv; \
 \
-  dot_pos = (n == 0.0f) ? 1:(int)floorl_(log10f_(fabsf(n)))+1; \
+  extern f32 fabs(f32);\
+  dot_pos = (n == 0.0f) ? 1:(int)floorl_(log10f_(fabs(n)))+1; \
   for (;n != (type)floorl_((f64)n);) \
     n *= 10; \
 \

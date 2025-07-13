@@ -97,6 +97,7 @@ extern str    substr(str *restrict self, size_t, size_t);
 extern size_t find_n(str *, const char *, size_t, size_t);
 extern size_t find(str *, const char *, size_t);
 extern str    copy(str *restrict, size_t);
+extern void   shrink_to_fit(str *restrict);
 
 /* FREE */
 extern size_t free_str(str *restrict self);

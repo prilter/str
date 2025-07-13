@@ -5,15 +5,16 @@ int
 main(void)
 {
   /* INIT */
-  str    s = init_str(); 
-  float  a = 5.6;
-  double b = -123.43;
+  str s = init_str(); 
 
   /* CHECK */
-  to_string_f16(&s, a);
-  printf("f16:\nstr lib: %s\nGlibc formatting: %f\n\n", s.c_str, a);
-  to_string_f32(&s, b);
-  printf("f32:\nstr lib: %s\nGlibc formatting: %.14f\n\n", s.c_str, b);
+  insert(&s, "Hello", 0);
+  append(&s, "world!");
+  insert_ch(&s, ' ', 5);
+
+  printf("Before shrink_to_fit(): %zd\n", s.capacity);
+  shrink_to_fit(&s);
+  printf("After  shrink_to_fit(): %zd\n", s.capacity);
 
   /* FREE */
   if (free_str(&s))

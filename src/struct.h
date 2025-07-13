@@ -16,12 +16,9 @@ typedef struct str {
 /* TODO
   CAPACITY
 void reserve(size_t n = 0);
-void shrink_to_fit();
 
   MODIFIERS
 string& append(const string& str, size_t subpos, size_t sublen);
-template <class InputIterator> string& append(InputIterator first, InputIterator last);
-template <class InputIterator> void insert(iterator p, InputIterator first, InputIterator last);
 string& replace(size_t pos, size_t len, const string& str);
 string& replace(iterator i1, iterator i2, const string& str);
 string& replace(size_t pos, size_t len, const string& str, size_t subpos, size_t sublen);
@@ -32,7 +29,7 @@ string& replace(iterator i1, iterator i2, const char* s, size_t n);
 string& replace(size_t pos, size_t len, size_t n, char c);
 string& replace(iterator i1, iterator i2, size_t n, char c);
 
-  STRING OPERATIONS
+STRING OPERATIONS
 size_t find(const string& str, size_t pos = 0) const noexcept;
 size_t find(const char* s, size_t pos = 0) const;
 size_t find(const char* s, size_t pos, size_t n) const;
@@ -63,9 +60,4 @@ long long stoll(const string& str, size_t* idx = 0, int base = 10);
 unsigned long long stoull(const string& str, size_t* idx = 0, int base = 10);
 double stod(const string& str, size_t* idx = 0);
 long double stold(const string& str, size_t* idx = 0);
-
-# MAIN FUNCTION GOTTED
-string to_string(float val);
-string to_string(double val);
-string to_string(long double val);
 */
