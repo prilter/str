@@ -3,7 +3,21 @@
  * Add reserve functions
 */
 
+/* LIBS */
 #include "struct.h"
+#if defined(__FreeBSD__) /* MALLOC */
+  #include <stdlib.h>
+#else
+  #if defined(__has_include)
+    #if __has_include(<malloc.h>)
+      #include <malloc.h>
+    #else
+      #include <stdlib.h>
+    #endif
+  #else
+    #include <stdlib.h>
+  #endif
+#endif
 
 /* RETURNS */
 extern const size_t DOUBLE_FREE;
