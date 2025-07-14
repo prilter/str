@@ -7,18 +7,13 @@ main(void)
   /* INIT */
   str s = init_str(); 
 
-  /* CHECK */
-  insert(&s, "Hello", 0);
-  append(&s, "world!");
-  insert_ch(&s, ' ', 5);
-
-  printf("Before resize(): %zd\n", s.capacity);
-  resize(&s, 25);
-  printf("After  resize(): %zd\n", s.capacity);
-
+  /* hello world! */
+  if (assign_ln(&s, "Hello world!") == FAIL_MAPPING)
+    return 1;
+  puts(s.c_str);
 
   /* FREE */
-  if (free_str(&s))
+  if (free_str(&s) == SUCCESS)
     puts("Successful free memory");
 
   /* END */

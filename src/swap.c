@@ -3,14 +3,11 @@
 
 #include "struct.h"
 
-const size_t VALUE_WAS_RELEASED = 0;
-const size_t SUCCESS_SWAP = 1;
-
-size_t /* SWAP C_STR VALUES */
-swap(str *s1, str *s2)
+int /* SWAP C_STR VALUES */
+swap(str *restrict s1, str *restrict s2)
 {
   if (s1->is_free || s2->is_free)
-    return VALUE_WAS_RELEASED;
+    return UNSAFE;
 
   char *temp_c  = s1->c_str;
   size_t temp_a = s1->alloced;
@@ -21,5 +18,5 @@ swap(str *s1, str *s2)
   s2->c_str     = temp_c;
   s2->alloced   = temp_a;
 
-  return SUCCESS_SWAP;
+  return SUCCESS;
 }

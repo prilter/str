@@ -1,7 +1,8 @@
 #include <string.h>
 #include "struct.h"
 
-str init_str(size_t sz)
+str 
+init_str(size_t sz)
 {
   extern void *malloc(size_t);
   return (str) { 

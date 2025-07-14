@@ -3,13 +3,13 @@
 #include <ctype.h>
 
 int
-empty(str *restrict self)
+empty(str *restrict s)
 {
-  if (strcmp(self->c_str, "\0") == 0 || self->is_free)
+  if (strcmp(s->c_str, "\0") == 0 || s->is_free)
     return 1;
 
-  for (;*self->c_str;)
-    if (!isspace(*self->c_str++))
+  for (;*s->c_str;)
+    if (!isspace(*s->c_str++))
       return 0;
 
   return 1;

@@ -3,13 +3,16 @@
 #include <malloc.h>
 #include "struct.h"
 
-extern str *FAIL_ADDING;
-
 /* INSERT */
-str
+int
 insert(str *line, const char *s, size_t x)
 {
   size_t linelen, slen;
+
+  if (line->is_free)
+    return UNSAFE;
+  if (!s)
+    return NO_DATA;
 
   linelen = strlen(line->c_str);
   slen    = strlen(s);
@@ -19,7 +22,7 @@ insert(str *line, const char *s, size_t x)
 
   if (line->alloced <= linelen + slen) {
     if (!(line->c_str = realloc(line->c_str, line->alloced + slen + 4)))
-      return *FAIL_ADDING;
+      return FAIL_MAPPING;
     line->alloced += slen + 4;
   }
 
@@ -27,11 +30,11 @@ insert(str *line, const char *s, size_t x)
   for (;*s;)
     *(line->c_str + x++) = *s++;
 
-  return *line;
+  return SUCCESS;
 }
 
 /* INSERT_N */
-str
+int
 insert_n(str *line, const char *s, size_t x, size_t n)
 {
   char buf[n];
@@ -42,11 +45,13 @@ insert_n(str *line, const char *s, size_t x, size_t n)
 }
 
 /* INSERT_CH */
-str
+int
 insert_ch(str *line, const char ch, size_t x)
 {
   size_t linelen;
 
+  if (line->is_free)
+    return UNSAFE;
   linelen = strlen(line->c_str);
 
   if (x > linelen)
@@ -54,12 +59,12 @@ insert_ch(str *line, const char ch, size_t x)
 
   if (line->alloced <= linelen + 1) {
     if (!(line->c_str = realloc(line->c_str, line->alloced + 5)))
-      return *FAIL_ADDING;
+      return FAIL_MAPPING;
     line->alloced += 5;
   }
 
   memcpy(line->c_str + x + 1, line->c_str + x, linelen - x + 1);
   *(line->c_str + x) = ch;
 
-  return *line;
+  return SUCCESS;
 }

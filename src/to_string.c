@@ -13,22 +13,20 @@ typedef long double             f64;
 typedef double                  f32;
 typedef float                   f16;
 
-extern void *FAIL_MAPPING;
-
 #define MAPPING(str, len) do {\
   if (str->alloced <= (len)*sizeof(char)) {\
     if (!(str->c_str = realloc(str->c_str, (len) * sizeof(char) + 4)))\
-      return *FAIL_MAPPING;\
+      return FAIL_MAPPING;\
     str->alloced = (len) * sizeof(char) + 4;\
   }\
 } while(0);
 
-#define CODE_U(buf, n, type) \
+#define CODE_U_WITHOUT_RET(buf, n, type) \
 {\
   type temp, len; \
 \
   if (buf->is_free) \
-    return *FAIL_MAPPING; \
+    return UNSAFE; \
 \
   len = 0, temp = n; \
   do { len++; temp /= 10; } while (temp); \
@@ -41,23 +39,28 @@ extern void *FAIL_MAPPING;
     n /= 10; \
   } \
 }
+#define CODE_U(buf, n, type) { \
+  CODE_U_WITHOUT_RET(buf, n, type); \
+  return SUCCESS; \
+}
 
-void to_string_ui16(str *restrict buf, ui16 n) {CODE_U(buf, n, ui16);}
-void to_string_ui32(str *restrict buf, ui32 n) {CODE_U(buf, n, ui32);}
-void to_string_ui64(str *restrict buf, ui64 n) {CODE_U(buf, n, ui64);}
+int to_string_ui16(str *restrict buf, ui16 n) {CODE_U(buf, n, ui16);}
+int to_string_ui32(str *restrict buf, ui32 n) {CODE_U(buf, n, ui32);}
+int to_string_ui64(str *restrict buf, ui64 n) {CODE_U(buf, n, ui64);}
 
-extern str insert_ch(str *line, const char ch, size_t x);
+extern int insert_ch(str *line, const char ch, size_t x);
 #define CODE_I(buf, n, type) \
 { \
   u##type un = (n < 0) ? -n:n; \
-  CODE_U(buf, un, u##type); \
+  CODE_U_WITHOUT_RET(buf, un, u##type); \
   if (n < 0) \
     insert_ch(buf, '-', 0); \
+  return SUCCESS;\
 }
 
-void to_string_i16(str *restrict buf, i16 n) {CODE_I(buf, n, i16);}
-void to_string_i32(str *restrict buf, i32 n) {CODE_I(buf, n, i32);}
-void to_string_i64(str *restrict buf, i64 n) {CODE_I(buf, n, i64);}
+int to_string_i16(str *restrict buf, i16 n) {CODE_I(buf, n, i16);}
+int to_string_i32(str *restrict buf, i32 n) {CODE_I(buf, n, i32);}
+int to_string_i64(str *restrict buf, i64 n) {CODE_I(buf, n, i64);}
 
 /* FLOAT */
 static inline f64 pow_(f64 n, ui16 deg) {
@@ -87,6 +90,9 @@ static inline f64 floorl_(f64 x) {
   ui16 dot_pos; \
   ui64 to_conv; \
 \
+  if (buf->is_free) \
+    return UNSAFE; \
+\
   extern f32 fabs(f32);\
   dot_pos = (n == 0.0f) ? 1:(int)floorl_(log10f_(fabs(n)))+1; \
   for (;n != (type)floorl_((f64)n);) \
@@ -102,7 +108,8 @@ static inline f64 floorl_(f64 x) {
   CODE_UF(buf, un, type); \
   if (n < 0) \
     insert_ch(buf, '-', 0); \
+  return SUCCESS; \
 }
 
-void to_string_f16(str *restrict buf, f16 n) {CODE_F(buf, n, f16);}
-void to_string_f32(str *restrict buf, f32 n) {CODE_F(buf, n, f32);}
+int to_string_f16(str *restrict buf, f16 n) {CODE_F(buf, n, f16);}
+int to_string_f32(str *restrict buf, f32 n) {CODE_F(buf, n, f32);}

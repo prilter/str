@@ -2,13 +2,14 @@
 #include "struct.h"
 
 /* FIND */
-extern const size_t NPOS;
 size_t
 find(str *ln, const char *s, size_t pos)
 {
   size_t res;
 
-  if (!ln->data || !s)
+  if (ln->is_free)
+    return UNSAFE;
+  if (!ln->data || !s || !pos)
     return NPOS;
 
   res = strstr(ln->c_str + pos, s) - ln->c_str;
@@ -28,6 +29,8 @@ find_n(str *ln, const char *s, size_t pos, size_t count)
   size_t res;
 
   /* CHECK ARGUMENTS */
+  if (ln->is_free)
+    return UNSAFE;
   if (!ln->data || !count || !s)
     return NPOS;
 

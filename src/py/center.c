@@ -1,10 +1,10 @@
 #include <string.h>
 #include "../struct.h"
 
-extern str insert_ch(str *line, const char ch, size_t x);
-extern str push_back(str *self, int ch);
+extern int insert_ch(str *s, const char ch, size_t x);
+extern int push_back(str *s, int ch);
 
-str
+int
 center(str *s, int ch, size_t w)
 { 
   /* INIT */
@@ -12,8 +12,10 @@ center(str *s, int ch, size_t w)
 
   /* CHECKING PROBLEMS */
   len = strlen(s->c_str);
-  if (w <= len)
-    return *s;
+  if (w <= len || w == 0)
+    return WRONG_DATA;
+  if (s->is_free)
+    return UNSAFE;
 
   /* MAIN */
   st = (size_t)((w - len) >> 1);
@@ -25,6 +27,5 @@ center(str *s, int ch, size_t w)
     push_back(s, ch); 
 
   /* END */
-  s->is_free = 0;
-  return *s;
+  return SUCCESS;
 }

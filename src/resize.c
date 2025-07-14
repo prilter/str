@@ -3,17 +3,15 @@
 
 #include "struct.h"
 
-const void *UNSAFE = NULL;
-extern const void *FAIL_MAPPING;
-
-void
+int
 resize(str *restrict s, size_t sz)
 {
-  if (sz < strlen(s->c_str) * sizeof(char))
-    return (void)(*UNSAFE);
+  if (sz < strlen(s->c_str) * sizeof(char) || s->is_free)
+    return UNSAFE;
 
   if (!(s->c_str = realloc(s->c_str, sz)))
-    return (void)*FAIL_MAPPING;
-
+    return FAIL_MAPPING;
   s->capacity = sz;
+
+  return SUCCESS;
 }

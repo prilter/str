@@ -1,17 +1,19 @@
 #include <ctype.h>
 #include "../../struct.h"
 
-str
+int
 uppercase(str *restrict s)
 {
   char *b;
 
-  if (s->is_free || !s->c_str)
-    return *s;
+  if (!s->data)
+    return SUCCESS;
+  if (s->is_free)
+    return UNSAFE;
 
   b = s->c_str;
   for (;*b; b++)
     *b = toupper(*b);
 
-  return *s;
+  return SUCCESS;
 }

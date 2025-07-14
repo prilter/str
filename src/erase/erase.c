@@ -3,62 +3,70 @@
 #include "../struct.h"
 
 /* ERASE STRING */
-str
-erase(str *self, const char *s) 
+int
+erase(str *ln, const char *s) 
 {
-  if (!s || self->is_free)
-    return *self;
+  if (!s)
+    return NO_DATA;
+  if (ln->is_free)
+    return UNSAFE;
 
   char *p;
-  if (!(p = strstr(self->c_str, s)))
-    return *self;
+  if (!(p = strstr(ln->c_str, s)))
+    return NO_DATA;
 
   memmove(p, p + strlen(s), strlen(p + strlen(s)) + 1);
-	if (!(self->c_str = realloc(self->c_str, sizeof(char) * strlen(self->c_str) + 4)))
-	 return *self;
-  self->alloced = sizeof(char) * strlen(self->c_str) + 4;
+	if (!(ln->c_str = realloc(ln->c_str, sizeof(char) * strlen(ln->c_str) + 4)))
+	 return FAIL_MAPPING;
+  ln->alloced = sizeof(char) * strlen(ln->c_str) + 4;
 
-	return *self;
+	return SUCCESS;
 }
 
-str
-erase_n(str *self, const char *s, size_t times)
+int
+erase_n(str *ln, const char *s, size_t times)
 {
-  for (;times-- && strstr(self->c_str, s);)
-    erase(self, s);
-  return *self;
+  if (!s || times == 0)
+    return NO_DATA;
+  if (ln->is_free)
+    return UNSAFE;
+
+  for (;times-- && strstr(ln->c_str, s);)
+    erase(ln, s);
+  return SUCCESS;
 }
 
 /* ERASE CHAR */
-str
-erase_ch(str *self, int ch, size_t times) 
+int
+erase_ch(str *ln, int ch, size_t times) 
 {
-  if (self->is_free || times == 0)
-    return *self;
+  if (times == 0)
+    return NO_DATA;
+  if (ln->is_free)
+    return UNSAFE;
 
   size_t i;
+  for (i = 0; times && *(ln->c_str + i); i++)
+    if (*(ln->c_str + i) == ch)
+      {memcpy(ln->c_str+i, ln->c_str+i+1, ln->alloced-- - i); times--;}
 
-  for (i = 0; times && *(self->c_str + i); i++)
-    if (*(self->c_str + i) == ch)
-      {memcpy(self->c_str+i, self->c_str+i+1, self->alloced-- - i); times--;}
-
-  return *self;
+  return SUCCESS;
 }
 
 /* ERASE SUBLINE*/
-str
-erase_sub(str *self, size_t st, size_t end) 
+int
+erase_sub(str *ln, size_t st, size_t end) 
 {
   size_t len;
 
-  len = strlen(self->c_str);
-  if (st > len)
-	 return *self;
+  len = strlen(ln->c_str);
+  if (st > len || ln->is_free)
+	 return UNSAFE;
 
-  memmove(self->c_str + st, self->c_str + end, len - (end - st) + 1);
-	if (!(self->c_str = realloc(self->c_str, len)))
-	 return *self;
-  self->alloced = len;
+  memmove(ln->c_str + st, ln->c_str + end, len - (end - st) + 1);
+	if (!(ln->c_str = realloc(ln->c_str, len * sizeof(char) + 4)))
+	 return FAIL_MAPPING;
+  ln->alloced = len * sizeof(char) + 4;
 
-	return *self;
+	return SUCCESS;
 }

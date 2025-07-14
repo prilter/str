@@ -3,25 +3,26 @@
 #include <malloc.h>
 #include "struct.h"
 
-#define DSTLEN strlen(self->c_str)
+#define DSTLEN strlen(s->c_str)
 
-str *FAIL_ADDING = NULL;
-
-str
-push_back(str *self, int ch)
+int
+push_back(str *s, int ch)
 {
   size_t len;
-  len = strlen(self->c_str);
+  
+  if (s->is_free)
+    return UNSAFE;
 
   /* NOT ENOUGH MEMORY */
-  if (len + 1 >= self->alloced) {
-    if (!(self->c_str = realloc( self->c_str, len + 4 )))
-      return *FAIL_ADDING;
-    self->alloced >>= 1;
+  len = strlen(s->c_str);
+  if (len + 1 >= s->alloced) {
+    if (!(s->c_str = realloc( s->c_str, len * sizeof(char) + 4 )))
+      return FAIL_MAPPING;
+    s->alloced = len * sizeof(char) + 4;
   }
 
   /* PUSH BACK */
-  *(self->c_str + len) = ch;
-  *(self->c_str + len + 1) = '\0';
-  return *self;
+  *(s->c_str + len) = ch;
+  *(s->c_str + len + 1) = '\0';
+  return SUCCESS;
 }

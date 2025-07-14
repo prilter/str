@@ -12,6 +12,14 @@ typedef struct str {
   size_t is_free;
 } str;
 
+/* RETURN */
+#define SUCCESS       -200
+#define DOUBLE_FREE   -300
+#define FAIL_MAPPING  -400
+#define UNSAFE        -500
+#define WRONG_DATA    -600
+#define NO_DATA       -700
+#define NPOS          -800 
 
 /* TODO
   CAPACITY
